@@ -1,12 +1,12 @@
 import { render, RenderPosition } from "../framework/render";
-import AdvantagesViewView from "./advantages-view";
+import AdvantagesView from "./advantages-view";
 
 export default class AdvantagesPresenter {
   #advantagesView = null;
   #container = null;
 
   constructor({ container }) {
-    this.#advantagesView = new AdvantagesViewView();
+    this.#advantagesView = new AdvantagesView();
     this.#container = container;
   }
 

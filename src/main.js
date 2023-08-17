@@ -8,6 +8,7 @@ import HeroPresenter from "./hero/hero-presenter";
 import MissionPresenter from "./mission/mission-presenter";
 import AdvantagesPresenter from "./advantages/advantages-presenter";
 import FiltersPresenter from "./filters/filters-presenter";
+import CataloguePresenter from "./catalogue/catalogue-presenter";
 
 // Ваши импорты...
 
@@ -44,8 +45,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const heroPresenter = new HeroPresenter({ container: mainContainer });
   const advantagesPresenter = new AdvantagesPresenter({ container: mainContainer });
   const filtersPresenter = new FiltersPresenter({ container: mainContainer });
+  const cataloguePresenter = new CataloguePresenter({ container: mainContainer });
 
   headerCountPresenter.init();
+  cataloguePresenter.init();
   filtersPresenter.init();
   advantagesPresenter.init();
   missionPresenter.init();

@@ -17,4 +17,8 @@ export default class CatalogueView extends AbstractView {
   get cardListContainer() {
     return this.element.querySelector('.catalogue__list');
   }
+
+  get buttonContainer() {
+    return this.element.querySelector('.catalogue__btn-wrap');
+  }
 }

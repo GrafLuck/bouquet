@@ -3,6 +3,7 @@ import "./vendor";
 import { ImageSlider } from "./utils/image-slider";
 import { iosVhFix } from "./utils/ios-vh-fix";
 import { modals, initModals } from "./modals/init-modals";
+import HeaderCountPresenter from "./header/header-count-presenter";
 
 // Ваши импорты...
 
@@ -32,4 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // ------------
 
   // Ваш код...
+  const headerContainer = document.querySelector('.header__container');
+  const headerCountPresenter = new HeaderCountPresenter({container: headerContainer});
+  headerCountPresenter.init();
 });

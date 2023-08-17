@@ -6,6 +6,7 @@ import { modals, initModals } from "./modals/init-modals";
 import HeaderCountPresenter from "./header/header-count-presenter";
 import HeroPresenter from "./hero/hero-presenter";
 import MissionPresenter from "./mission/mission-presenter";
+import AdvantagesPresenter from "./advantages/advantages-presenter";
 
 // Ваши импорты...
 
@@ -40,8 +41,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const headerCountPresenter = new HeaderCountPresenter({ container: headerContainer });
   const missionPresenter = new MissionPresenter({ container: mainContainer });
   const heroPresenter = new HeroPresenter({ container: mainContainer });
+  const advantagesPresenter = new AdvantagesPresenter({ container: mainContainer });
 
   headerCountPresenter.init();
+  advantagesPresenter.init();
   missionPresenter.init();
   heroPresenter.init();
 

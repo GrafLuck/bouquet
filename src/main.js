@@ -5,6 +5,7 @@ import { iosVhFix } from "./utils/ios-vh-fix";
 import { modals, initModals } from "./modals/init-modals";
 import HeaderCountPresenter from "./header/header-count-presenter";
 import HeroPresenter from "./hero/hero-presenter";
+import MissionPresenter from "./mission/mission-presenter";
 
 // Ваши импорты...
 
@@ -36,8 +37,12 @@ window.addEventListener("DOMContentLoaded", () => {
   // Ваш код...
   const headerContainer = document.querySelector('.header__container');
   const mainContainer = document.querySelector('main');
-  const headerCountPresenter = new HeaderCountPresenter({container: headerContainer});
-  const heroPresenter = new HeroPresenter({container: mainContainer});
+  const headerCountPresenter = new HeaderCountPresenter({ container: headerContainer });
+  const missionPresenter = new MissionPresenter({ container: mainContainer });
+  const heroPresenter = new HeroPresenter({ container: mainContainer });
+
   headerCountPresenter.init();
+  missionPresenter.init();
   heroPresenter.init();
+
 });

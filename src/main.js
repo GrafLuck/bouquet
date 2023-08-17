@@ -7,6 +7,7 @@ import HeaderCountPresenter from "./header/header-count-presenter";
 import HeroPresenter from "./hero/hero-presenter";
 import MissionPresenter from "./mission/mission-presenter";
 import AdvantagesPresenter from "./advantages/advantages-presenter";
+import FiltersPresenter from "./filters/filters-presenter";
 
 // Ваши импорты...
 
@@ -42,8 +43,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const missionPresenter = new MissionPresenter({ container: mainContainer });
   const heroPresenter = new HeroPresenter({ container: mainContainer });
   const advantagesPresenter = new AdvantagesPresenter({ container: mainContainer });
+  const filtersPresenter = new FiltersPresenter({ container: mainContainer });
 
   headerCountPresenter.init();
+  filtersPresenter.init();
   advantagesPresenter.init();
   missionPresenter.init();
   heroPresenter.init();

@@ -13,4 +13,8 @@ export default class CatalogueView extends AbstractView {
   get sortingContainer() {
     return this.element.querySelector('.catalogue__header');
   }
+
+  get cardListContainer() {
+    return this.element.querySelector('.catalogue__list');
+  }
 }

@@ -2,7 +2,7 @@ import Observable from '../framework/observable.js';
 
 export default class CartModel extends Observable {
   #cartApiService = null;
-  #cart = [];
+  #cart = null;
 
   constructor({cartApiService}) {
     super();
@@ -13,8 +13,15 @@ export default class CartModel extends Observable {
     return this.#cart;
   }
 
+  get countProducts() {
+    return this.#cart === null ? 0 : this.#cart.productCount;
+  }
+
+  get totalPrice() {
+    return this.#cart === null ? 0 : this.#cart.sum;
+  }
+
   async init() {
     this.#cart = await this.#cartApiService.cart;
-    return this.#cart;
   }
 }

@@ -1,5 +1,5 @@
 const AUTHORIZATION = 'Basic dPy4sfS45wcl1sh2I';
-const END_POINT = 'https://grading.objects.pages.academy';
+const END_POINT = 'https://grading.objects.pages.academy/flowers-shop';
 
 const Method = {
   GET: 'GET',

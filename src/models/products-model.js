@@ -15,7 +15,6 @@ export default class ProductsModel extends Observable {
 
   async init() {
     this.#products = await this.#productsApiService.products;
-    return this.#products;
   }
 
   async getProduct(id) {

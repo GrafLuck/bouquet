@@ -4,9 +4,11 @@ import HeaderCountView from "./header-count-view";
 export default class HeaderCountPresenter {
   #headerCountView = null;
   #container = null;
+  #cartModel = null;
 
-  constructor({container}) {
-    this.#headerCountView = new HeaderCountView();
+  constructor({container, cartModel}) {
+    this.#cartModel = cartModel;
+    this.#headerCountView = new HeaderCountView({model: this.#cartModel});
     this.#container = container;
   }
 

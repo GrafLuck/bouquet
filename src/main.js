@@ -9,6 +9,11 @@ import MissionPresenter from "./mission/mission-presenter";
 import AdvantagesPresenter from "./advantages/advantages-presenter";
 import FiltersPresenter from "./filters/filters-presenter";
 import CataloguePresenter from "./catalogue/catalogue-presenter";
+import CartModel from "./models/cart-model";
+import CartApiService from "./api/cart-api-service";
+import ProductsApiService from "./api/products-api-service";
+import ProductsModel from "./models/products-model";
+import { AUTHORIZATION, END_POINT } from "./const";
 
 // Ваши импорты...
 
@@ -38,9 +43,16 @@ window.addEventListener("DOMContentLoaded", () => {
   // ------------
 
   // Ваш код...
+  const cartApiService = new CartApiService(END_POINT, AUTHORIZATION);
+  const productsApiService = new ProductsApiService(END_POINT, AUTHORIZATION);
+  const cartModel = new CartModel({cartApiService});
+  const productsModel = new ProductsModel({productsApiService});
+
+  Promise.all([productsModel.init(), cartModel.init()]);
+
   const headerContainer = document.querySelector('.header__container');
   const mainContainer = document.querySelector('main');
-  const headerCountPresenter = new HeaderCountPresenter({ container: headerContainer });
+  const headerCountPresenter = new HeaderCountPresenter({ container: headerContainer, cartModel: cartModel });
   const missionPresenter = new MissionPresenter({ container: mainContainer });
   const heroPresenter = new HeroPresenter({ container: mainContainer });
   const advantagesPresenter = new AdvantagesPresenter({ container: mainContainer });
@@ -53,5 +65,4 @@ window.addEventListener("DOMContentLoaded", () => {
   advantagesPresenter.init();
   missionPresenter.init();
   heroPresenter.init();
-
 });

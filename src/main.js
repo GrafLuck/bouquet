@@ -3,6 +3,9 @@ import "./vendor";
 import { ImageSlider } from "./utils/image-slider";
 import { iosVhFix } from "./utils/ios-vh-fix";
 import { modals, initModals } from "./modals/init-modals";
+
+
+// Ваши импорты...
 import HeaderCountPresenter from "./header/header-count-presenter";
 import HeroPresenter from "./hero/hero-presenter";
 import MissionPresenter from "./mission/mission-presenter";
@@ -16,7 +19,6 @@ import ProductsModel from "./models/products-model";
 import { AUTHORIZATION, END_POINT } from "./const";
 import ButtonHeartModel from "./models/button-heart-model";
 
-// Ваши импорты...
 
 // Код для работы попапов, не удаляйте его
 window.addEventListener("DOMContentLoaded", () => {

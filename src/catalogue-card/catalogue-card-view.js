@@ -2,11 +2,14 @@ import AbstractView from "../framework/view/abstract-view";
 import { createCatalogueCardTemplate } from "./catalogue-card-template";
 
 export default class CatalogueCardView extends AbstractView {
-  constructor() {
+  #card = null;
+
+  constructor(card) {
     super();
+    this.#card = card;
   }
 
   get template() {
-    return createCatalogueCardTemplate();
+    return createCatalogueCardTemplate(this.#card);
   }
 }

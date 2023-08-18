@@ -48,7 +48,14 @@ window.addEventListener("DOMContentLoaded", () => {
   const cartModel = new CartModel({cartApiService});
   const productsModel = new ProductsModel({productsApiService});
 
-  Promise.all([productsModel.init(), cartModel.init()]);
+  Promise.all([productsModel.init(), cartModel.init()]).then(() => {
+    headerCountPresenter.init();
+    cataloguePresenter.init();
+    filtersPresenter.init();
+    advantagesPresenter.init();
+    missionPresenter.init();
+    heroPresenter.init();
+  });
 
   const headerContainer = document.querySelector('.header__container');
   const mainContainer = document.querySelector('main');
@@ -57,12 +64,5 @@ window.addEventListener("DOMContentLoaded", () => {
   const heroPresenter = new HeroPresenter({ container: mainContainer });
   const advantagesPresenter = new AdvantagesPresenter({ container: mainContainer });
   const filtersPresenter = new FiltersPresenter({ container: mainContainer });
-  const cataloguePresenter = new CataloguePresenter({ container: mainContainer });
-
-  headerCountPresenter.init();
-  cataloguePresenter.init();
-  filtersPresenter.init();
-  advantagesPresenter.init();
-  missionPresenter.init();
-  heroPresenter.init();
+  const cataloguePresenter = new CataloguePresenter({ container: mainContainer, productsModel: productsModel });
 });

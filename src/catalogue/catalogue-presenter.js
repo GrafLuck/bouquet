@@ -11,9 +11,11 @@ export default class CataloguePresenter {
   #catalogueCardPresenter = null;
   #buttonShowMorePresenter = null;
   #buttonToTopPresenter = null;
+  #productsModel = null;
   #container = null;
 
-  constructor({ container }) {
+  constructor({ container, productsModel }) {
+    this.#productsModel = productsModel;
     this.#catalogueView = new CatalogueView();
     this.#container = container;
   }
@@ -21,7 +23,10 @@ export default class CataloguePresenter {
   init() {
     render(this.#catalogueView, this.#container, RenderPosition.AFTERBEGIN);
     this.#renderSorting();
-    this.#renderCatalogCard();
+    console.log(this.#productsModel);
+    for (const product of this.#productsModel.products) {
+      this.#renderCatalogCard(product);
+    }
     this.#renderButtonShowMore();
     this.#renderButtonToTopPresenter();
   }
@@ -31,8 +36,8 @@ export default class CataloguePresenter {
     this.#sortingPresenter.init();
   }
 
-  #renderCatalogCard() {
-    this.#catalogueCardPresenter = new CatalogueCardPresenter({ container: this.#catalogueView.cardListContainer });
+  #renderCatalogCard(product) {
+    this.#catalogueCardPresenter = new CatalogueCardPresenter({ container: this.#catalogueView.cardListContainer, model: product});
     this.#catalogueCardPresenter.init();
   }
 

@@ -1,4 +1,5 @@
 function createCatalogueCardTemplate(card) {
+  const {title, description, price, previewImage} = card;
   return (`
     <li class="catalogue__item">
       <div class="item-card">
@@ -13,14 +14,14 @@ function createCatalogueCardTemplate(card) {
             </svg>
           </button>
           <picture>
-            <source type="image/webp" srcset="img/content/items/item-delicate-irises.webp, img/content/items/item-delicate-irises@2x.webp 2x"><img src="img/content/items/item-delicate-irises.png" srcset="img/content/items/item-delicate-irises@2x.png 2x" width="244" height="412" alt="item-delicate-irises">
+            <img src="${previewImage}" width="244" height="412" alt="${description}">
           </picture>
         </div>
         <div class="item-card__desc-wrap">
-          <h3 class="title title--h4 item-card__title">Нежные Ирисы</h3>
-          <div class="item-card__price-wrap"><b class="item-card__formatted-price">1 500</b><span class="item-card__currency">р</span></div>
+          <h3 class="title title--h4 item-card__title">${title}</h3>
+          <div class="item-card__price-wrap"><b class="item-card__formatted-price">${price}</b><span class="item-card__currency">р</span></div>
         </div>
-        <p class="text text--size-20 item-card__desc">Минималистичный букет для коллег и&nbsp;близких с&nbsp;запахом весны.</p>
+        <p class="text text--size-20 item-card__desc">${description}</p>
       </div>
     </li>
   `);

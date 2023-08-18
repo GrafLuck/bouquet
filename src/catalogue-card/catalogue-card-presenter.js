@@ -4,9 +4,16 @@ import CatalogueCardView from "./catalogue-card-view";
 export default class CatalogueCardPresenter {
   #catalogCardView = null;
   #container = null;
+  #model = null;
 
-  constructor({ container }) {
-    this.#catalogCardView = new CatalogueCardView();
+  constructor({ container, model }) {
+    this.#model = model;
+    this.#catalogCardView = new CatalogueCardView({
+      title: this.#model.title,
+      description: this.#model.description,
+      price: this.#model.price,
+      previewImage: this.#model.previewImage
+    });
     this.#container = container;
   }
 
@@ -14,3 +21,5 @@ export default class CatalogueCardPresenter {
     render(this.#catalogCardView, this.#container);
   }
 }
+
+

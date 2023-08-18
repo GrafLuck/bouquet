@@ -7,17 +7,21 @@ export default class CatalogueCardPresenter {
   #productsModel = null;
   #buttonHeartModel = null;
   #product = null;
+  #isActive = false;
 
-  constructor({ container, productsModel, buttonHeartModel, product }) {
+  constructor({ container, productsModel, buttonHeartModel, product, isActive }) {
     this.#productsModel = productsModel;
     this.#buttonHeartModel = buttonHeartModel;
     this.#product = product;
+    this.#isActive = isActive;
     this.#catalogCardView = new CatalogueCardView({
       card: {
         title: this.#product.title,
         description: this.#product.description,
         price: this.#product.price,
-        previewImage: this.#product.previewImage},
+        previewImage: this.#product.previewImage,
+        isActive: this.#isActive
+      },
       handleButtonHeartClick: this.#handleButtonHeartClick
     });
     this.#container = container;

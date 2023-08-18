@@ -14,14 +14,16 @@ export default class CataloguePresenter {
   #buttonShowMorePresenter = null;
   #buttonToTopPresenter = null;
   #productsModel = null;
+  #cartModel = null;
   #buttonHeartModel = null;
   #buttonShowMoreModel = null;
   #container = null;
   #catalogCardPresenters = new Map();
 
-  constructor({ container, productsModel, buttonHeartModel }) {
+  constructor({ container, productsModel, cartModel, buttonHeartModel }) {
     this.#productsModel = productsModel;
     this.#buttonHeartModel = buttonHeartModel;
+    this.#cartModel = cartModel;
     this.#buttonShowMoreModel = new ButtonShowMoreModel();
     this.#catalogueView = new CatalogueView();
     this.#container = container;
@@ -51,11 +53,13 @@ export default class CataloguePresenter {
   }
 
   #renderCatalogCard(product) {
+    const isActive = Object.hasOwn(this.#cartModel.cart.products, product.id);
     this.#catalogueCardPresenter = new CatalogueCardPresenter({
       container: this.#catalogueView.cardListContainer,
       productsModel: this.#productsModel,
       buttonHeartModel: this.#buttonHeartModel,
-      product: product
+      product: product,
+      isActive: isActive
     });
     this.#catalogCardPresenters.set(product.id, this.#catalogueCardPresenter);
     this.#catalogueCardPresenter.init();

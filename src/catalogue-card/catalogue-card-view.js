@@ -2,13 +2,11 @@ import AbstractStatefulView from "../framework/view/abstract-stateful-view";
 import { createCatalogueCardTemplate } from "./catalogue-card-template";
 
 export default class CatalogueCardView extends AbstractStatefulView {
-  #card = null;
   #handleButtonHeartClick = null;
 
   constructor({card, handleButtonHeartClick}) {
     super();
-    this._state = {...card, isActive: false};
-    this.#card = card;
+    this._state = {...card };
     this.#handleButtonHeartClick = handleButtonHeartClick;
     this._restoreHandlers();
   }

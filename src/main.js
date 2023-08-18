@@ -66,5 +66,5 @@ window.addEventListener("DOMContentLoaded", () => {
   const heroPresenter = new HeroPresenter({ container: mainContainer });
   const advantagesPresenter = new AdvantagesPresenter({ container: mainContainer });
   const filtersPresenter = new FiltersPresenter({ container: mainContainer });
-  const cataloguePresenter = new CataloguePresenter({ container: mainContainer, productsModel: productsModel, buttonHeartModel: buttonHeartModel });
+  const cataloguePresenter = new CataloguePresenter({ container: mainContainer, productsModel: productsModel, cartModel: cartModel, buttonHeartModel: buttonHeartModel });
 });

@@ -1,4 +1,4 @@
-import { render } from "../framework/render";
+import { remove, render } from "../framework/render";
 import CatalogueCardView from "./catalogue-card-view";
 
 export default class CatalogueCardPresenter {
@@ -19,6 +19,10 @@ export default class CatalogueCardPresenter {
 
   init() {
     render(this.#catalogCardView, this.#container);
+  }
+
+  removeCard() {
+    remove(this.#catalogCardView);
   }
 }
 

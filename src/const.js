@@ -85,10 +85,13 @@ const FiltersColor = {
   },
 }
 
+const COUNT_DISPLAY_PRODUCTS = 6;
+
 export {
   AUTHORIZATION,
   END_POINT,
   Method,
   FiltersReason,
-  FiltersColor
+  FiltersColor,
+  COUNT_DISPLAY_PRODUCTS
 };

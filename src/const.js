@@ -1,3 +1,12 @@
+const AUTHORIZATION = 'Basic dPy4sfS45wcl1sh2I';
+const END_POINT = 'https://grading.objects.pages.academy';
+
+const Method = {
+  GET: 'GET',
+  PUT: 'PUT',
+  DELETE: 'DELETE',
+}
+
 const FiltersReason = {
   ALL: {
     id: '0',
@@ -76,4 +85,10 @@ const FiltersColor = {
   },
 }
 
-export { FiltersReason, FiltersColor };
+export {
+  AUTHORIZATION,
+  END_POINT,
+  Method,
+  FiltersReason,
+  FiltersColor
+};

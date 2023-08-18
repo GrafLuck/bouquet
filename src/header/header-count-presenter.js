@@ -8,7 +8,7 @@ export default class HeaderCountPresenter {
 
   constructor({container, cartModel}) {
     this.#cartModel = cartModel;
-    this.#headerCountView = new HeaderCountView({model: this.#cartModel});
+    this.#headerCountView = new HeaderCountView({count: this.#cartModel.countProducts, price: this.#cartModel.totalPrice});
     this.#container = container;
   }
 

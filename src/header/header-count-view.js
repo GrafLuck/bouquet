@@ -2,14 +2,14 @@ import AbstractView from '../framework/view/abstract-view';
 import { createHeaderCountTemplate } from './header-count-template';
 
 export default class HeaderCountView extends AbstractView{
-  #model = null;
+  #totalInfo = {count: 0, price: 0};
 
-  constructor({model}) {
+  constructor(totalInfo) {
     super();
-    this.#model = model;
+    this.#totalInfo = totalInfo;
   }
 
   get template() {
-    return createHeaderCountTemplate({count: this.#model.countProducts, price: this.#model.totalPrice});
+    return createHeaderCountTemplate(this.#totalInfo);
   }
 }

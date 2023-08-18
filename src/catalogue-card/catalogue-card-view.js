@@ -16,6 +16,10 @@ export default class CatalogueCardView extends AbstractView {
     return createCatalogueCardTemplate(this.#card);
   }
 
+  get buttonHeartBody() {
+    return this.element.querySelector('.button-heart__body');
+  }
+
   #onButtonHeartClick = (evt) => {
     evt.preventDefault();
     this.#handleButtonHeartClick();

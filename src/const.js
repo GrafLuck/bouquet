@@ -1,4 +1,4 @@
-const AUTHORIZATION = 'Basic dPy4sfS45wcl1sh2I';
+const AUTHORIZATION = 'Basic dPy45fS45wcl1sh2u';
 const END_POINT = 'https://grading.objects.pages.academy/flowers-shop';
 
 const Method = {

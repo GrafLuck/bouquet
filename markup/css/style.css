@@ -4841,6 +4841,9 @@ button,
   -o-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
 }
+.button-heart__body-active {
+  fill: #000000;
+}
 .button-heart:disabled {
   pointer-events: none;
 }

@@ -32,9 +32,16 @@ export default class CatalogueCardPresenter {
   }
 
   #handleButtonHeartClick = () => {
-    this.#productsModel.addProductToCart(this.#product.id).then(() => {
-      this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
-    })
+    const isAdd = this.#catalogCardView.buttonHeartBody.classList.toggle('button-heart__body-active');
+    if (isAdd) {
+      this.#productsModel.addProductToCart(this.#product.id).then(() => {
+        this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
+      });
+    } else {
+      this.#productsModel.deleteProductFromCart(this.#product.id).then(() => {
+        this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
+      });
+    }
     // обновить стиль кнопки на карточке
   };
 }

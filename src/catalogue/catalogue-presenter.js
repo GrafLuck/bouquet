@@ -14,12 +14,14 @@ export default class CataloguePresenter {
   #buttonShowMorePresenter = null;
   #buttonToTopPresenter = null;
   #productsModel = null;
+  #buttonHeartModel = null;
   #buttonShowMoreModel = null;
   #container = null;
   #catalogCardPresenters = new Map();
 
-  constructor({ container, productsModel }) {
+  constructor({ container, productsModel, buttonHeartModel }) {
     this.#productsModel = productsModel;
+    this.#buttonHeartModel = buttonHeartModel;
     this.#buttonShowMoreModel = new ButtonShowMoreModel();
     this.#catalogueView = new CatalogueView();
     this.#container = container;
@@ -49,7 +51,12 @@ export default class CataloguePresenter {
   }
 
   #renderCatalogCard(product) {
-    this.#catalogueCardPresenter = new CatalogueCardPresenter({ container: this.#catalogueView.cardListContainer, model: product});
+    this.#catalogueCardPresenter = new CatalogueCardPresenter({
+      container: this.#catalogueView.cardListContainer,
+      productsModel: this.#productsModel,
+      buttonHeartModel: this.#buttonHeartModel,
+      product: product
+    });
     this.#catalogCardPresenters.set(product.id, this.#catalogueCardPresenter);
     this.#catalogueCardPresenter.init();
   }

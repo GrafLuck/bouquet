@@ -14,6 +14,7 @@ import CartApiService from "./api/cart-api-service";
 import ProductsApiService from "./api/products-api-service";
 import ProductsModel from "./models/products-model";
 import { AUTHORIZATION, END_POINT } from "./const";
+import ButtonHeartModel from "./models/button-heart-model";
 
 // Ваши импорты...
 
@@ -47,6 +48,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const productsApiService = new ProductsApiService(END_POINT, AUTHORIZATION);
   const cartModel = new CartModel({cartApiService});
   const productsModel = new ProductsModel({productsApiService});
+  const buttonHeartModel = new ButtonHeartModel();
 
   Promise.all([productsModel.init(), cartModel.init()]).then(() => {
     headerCountPresenter.init();
@@ -59,10 +61,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const headerContainer = document.querySelector('.header__container');
   const mainContainer = document.querySelector('main');
-  const headerCountPresenter = new HeaderCountPresenter({ container: headerContainer, cartModel: cartModel });
+  const headerCountPresenter = new HeaderCountPresenter({ container: headerContainer, cartModel: cartModel, buttonHeartModel: buttonHeartModel });
   const missionPresenter = new MissionPresenter({ container: mainContainer });
   const heroPresenter = new HeroPresenter({ container: mainContainer });
   const advantagesPresenter = new AdvantagesPresenter({ container: mainContainer });
   const filtersPresenter = new FiltersPresenter({ container: mainContainer });
-  const cataloguePresenter = new CataloguePresenter({ container: mainContainer, productsModel: productsModel });
+  const cataloguePresenter = new CataloguePresenter({ container: mainContainer, productsModel: productsModel, buttonHeartModel: buttonHeartModel });
 });

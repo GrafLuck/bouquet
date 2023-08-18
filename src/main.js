@@ -25,31 +25,15 @@ window.addEventListener("DOMContentLoaded", () => {
   iosVhFix();
 
   window.addEventListener("load", () => {
-    // Инициализация слайдера
-    const imageSlider = new ImageSlider(".image-slider");
-    imageSlider.init();
-
     // Инициализация попапов
     initModals();
   });
 
-  // Пример кода для открытия попапа
-  document
-    .querySelector(".element-which-is-open-popup")
-    .addEventListener("click", () => modals.open("popup-data-attr"));
-
-  // Код отработает, если разметка попапа уже отрисована в index.html
-
-  // Если вы хотите рисовать разметку попапа под каждое "открытие",
-  // то не забудьте перенесети в код addEventListener инициализацию слайдера
-
-  // ------------
-
   // Ваш код...
   const cartApiService = new CartApiService(END_POINT, AUTHORIZATION);
   const productsApiService = new ProductsApiService(END_POINT, AUTHORIZATION);
-  const cartModel = new CartModel({cartApiService});
-  const productsModel = new ProductsModel({productsApiService});
+  const cartModel = new CartModel({ cartApiService });
+  const productsModel = new ProductsModel({ productsApiService });
   const buttonHeartModel = new ButtonHeartModel();
 
   Promise.all([productsModel.init(), cartModel.init()]).then(() => {

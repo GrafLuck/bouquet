@@ -36,13 +36,15 @@ export default class CatalogueCardPresenter {
     if (isAdd) {
       this.#productsModel.addProductToCart(this.#product.id).then(() => {
         this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
+        this.#catalogCardView.updateElement({...this.#product, isActive: true})
       });
+
     } else {
       this.#productsModel.deleteProductFromCart(this.#product.id).then(() => {
         this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
+        this.#catalogCardView.updateElement({...this.#product, isActive: false})
       });
     }
-    // обновить стиль кнопки на карточке
   };
 }
 

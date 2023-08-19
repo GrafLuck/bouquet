@@ -53,7 +53,10 @@ export default class CataloguePresenter {
   }
 
   #renderCatalogCard(product) {
-    const isActive = Object.hasOwn(this.#cartModel.cart.products, product.id);
+    let isActive = false;
+    if (!this.#cartModel.cart) {
+      isActive = Object.hasOwn(this.#cartModel.cart.products, product.id);
+    }
     this.#catalogueCardPresenter = new CatalogueCardPresenter({
       container: this.#catalogueView.cardListContainer,
       productsModel: this.#productsModel,
@@ -73,7 +76,7 @@ export default class CataloguePresenter {
   }
 
   #renderButtonShowMore() {
-    this.#buttonShowMorePresenter = new ButtonShowMorePresenter({ container: this.#catalogueView.buttonContainer, model: this.#buttonShowMoreModel});
+    this.#buttonShowMorePresenter = new ButtonShowMorePresenter({ container: this.#catalogueView.buttonContainer, model: this.#buttonShowMoreModel });
     this.#buttonShowMorePresenter.init();
   }
 

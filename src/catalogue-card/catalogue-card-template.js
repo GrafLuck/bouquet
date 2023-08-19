@@ -28,7 +28,7 @@ function createCatalogueCardTemplate(card) {
 }
 
 function createCataloguePopupTemplate(card) {
-  const { title, description, price, previewImage, authorPhoto, isActive, images } = card;
+  const { title, description, price, authorPhoto, isActive, images } = card;
   return (`
     <div>
       <div>

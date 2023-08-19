@@ -54,7 +54,7 @@ export default class CataloguePresenter {
 
   #renderCatalogCard(product) {
     let isActive = false;
-    if (!this.#cartModel.cart) {
+    if (this.#cartModel.cart) {
       isActive = Object.hasOwn(this.#cartModel.cart.products, product.id);
     }
     this.#catalogueCardPresenter = new CatalogueCardPresenter({

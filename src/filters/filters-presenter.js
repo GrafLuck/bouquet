@@ -37,8 +37,20 @@ export default class FiltersPresenter {
     this.#productsModel.filteringAndSortingProducts = filteringProducts;
   };
 
-  #handleFilterColorChange = () => {
+  #handleFilterColorChange = (colors) => {
+    const filteringProducts = [];
+    this.#buttonShowMoreModel.page = 1;
 
+    if (colors.has('all')) {
+      this.#productsModel.filteringAndSortingProducts = this.#productsModel.products;
+      return;
+    }
+    for (const product of this.#productsModel.products) {
+      if (colors.has(product.color)) {
+        filteringProducts.push(product);
+      }
+    }
+    this.#productsModel.filteringAndSortingProducts = filteringProducts;
   };
 
   adaptFilterToType(itemFilter) {

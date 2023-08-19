@@ -17,21 +17,18 @@ export default class FiltersView extends AbstractView {
     return createFiltersTemplate();
   }
 
-  get filterReason() {
-    return this.element.querySelector('.filter-reason');
-  }
-
-  get filterColor() {
-    return this.element.querySelector('.filter-color');
-  }
-
   #onFilterReasonChange = (evt) => {
-    console.log(evt.target);
+    evt.preventDefault();
     this.#handleFilterReasonChange(evt.target.value);
   };
 
   #onFilterColorChange = (evt) => {
-    console.log(evt.target);
-    this.#handleFilterColorChange(evt.target.value);
+    evt.preventDefault();
+    const colors = new Set();
+    const colorCheckboxesChecked = this.element.querySelectorAll('.filter-color__form-field:checked');
+    for (const colorCheckboxChecked of colorCheckboxesChecked) {
+      colors.add(colorCheckboxChecked.dataset.filterColor.split('-')[1])
+    }
+    this.#handleFilterColorChange(colors);
   };
 }

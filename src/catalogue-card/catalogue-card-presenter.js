@@ -90,7 +90,26 @@ export default class CatalogueCardPresenter {
   };
 
   #handleButtonAddToCartClick = () => {
-
+    const isAdd = this.#catalogPopupView.popupButton.innerText === 'отложить';
+    if (isAdd) {
+      this.#productsModel.addProductToCart(this.#product.id).then(() => {
+        this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
+        this.#isActive = true;
+        this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive });
+        this.#catalogPopupView.updateElement({ ...this.#product, isActive: this.#isActive });
+        const imageSlider = new ImageSlider(".image-slider");
+        imageSlider.init();
+      });
+    } else {
+      this.#productsModel.deleteProductFromCart(this.#product.id).then(() => {
+        this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
+        this.#isActive = false;
+        this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive });
+        this.#catalogPopupView.updateElement({ ...this.#product, isActive: this.#isActive });
+        const imageSlider = new ImageSlider(".image-slider");
+        imageSlider.init();
+      });
+    }
   };
 
   #handleCartClick = (evt) => {

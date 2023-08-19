@@ -15,6 +15,10 @@ export default class CataloguePopupView extends AbstractStatefulView {
     return createCataloguePopupTemplate(this._state);
   }
 
+  get popupButton() {
+    return this.element.querySelector('.product-description__button');
+  }
+
   _restoreHandlers() {
     this.element.querySelector('.product-description__button').addEventListener('click', this.#onButtonAddToCartClick);
   }

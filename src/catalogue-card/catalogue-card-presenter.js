@@ -76,13 +76,15 @@ export default class CatalogueCardPresenter {
     if (isAdd) {
       this.#productsModel.addProductToCart(this.#product.id).then(() => {
         this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
-        this.#catalogCardView.updateElement({ ...this.#product, isActive: true })
+        this.#isActive = true;
+        this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive })
       });
 
     } else {
       this.#productsModel.deleteProductFromCart(this.#product.id).then(() => {
         this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
-        this.#catalogCardView.updateElement({ ...this.#product, isActive: false })
+        this.#isActive = false;
+        this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive })
       });
     }
   };

@@ -26,6 +26,7 @@ export default class CatalogueCardPresenter {
         description: this.#product.description,
         price: this.#product.price,
         previewImage: this.#product.previewImage,
+        type: this.#product.type,
         isActive: this.#isActive
       },
       handleButtonHeartClick: this.#handleButtonHeartClick,

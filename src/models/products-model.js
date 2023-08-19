@@ -4,6 +4,8 @@ export default class ProductsModel extends Observable {
   #productsApiService = null;
   #products = [];
   #filteringAndSortingProducts = [];
+  #currentFilterReason = 'all';
+  #currentFilterColor = new Set().add('all');
 
   constructor({ productsApiService }) {
     super();
@@ -50,5 +52,22 @@ export default class ProductsModel extends Observable {
     } catch (err) {
 
     }
+  }
+
+  filterProducts(filterType, payload) {
+    let type;
+    let colors;
+    if (filterType === 'reason') {
+      type = payload;
+      colors = this.#currentFilterColor;
+    }
+    if (filterType === 'color') {
+      type = this.#currentFilterReason;
+      colors = payload;
+    }
+    this.#filteringAndSortingProducts = type !== 'all' ? this.products.filter((product) => product.type === type) : this.products;
+    this.#filteringAndSortingProducts = !colors.has('all') ? this.#filteringAndSortingProducts.filter((product) => colors.has(product.color)) : this.#filteringAndSortingProducts;
+    this.#currentFilterReason = type;
+    this.#currentFilterColor = colors;
   }
 }

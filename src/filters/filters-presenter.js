@@ -22,35 +22,15 @@ export default class FiltersPresenter {
   }
 
   #handleFilterReasonChange = (itemFilter) => {
-    const filteringProducts = [];
-    this.#buttonShowMoreModel.page = 1;
     const type = this.adaptFilterToType(itemFilter);
-    if (type === 'all') {
-      this.#productsModel.filteringAndSortingProducts = this.#productsModel.products;
-      return;
-    }
-    for (const product of this.#productsModel.products) {
-      if (product.type === type) {
-        filteringProducts.push(product);
-      }
-    }
-    this.#productsModel.filteringAndSortingProducts = filteringProducts;
+    this.#productsModel.filterProducts('reason', type);
+    this.#buttonShowMoreModel.page = 1;
   };
 
   #handleFilterColorChange = (colors) => {
-    const filteringProducts = [];
+    colors = this.adaptFilterToColor(colors);
+    this.#productsModel.filterProducts('color', colors);
     this.#buttonShowMoreModel.page = 1;
-
-    if (colors.has('all')) {
-      this.#productsModel.filteringAndSortingProducts = this.#productsModel.products;
-      return;
-    }
-    for (const product of this.#productsModel.products) {
-      if (colors.has(product.color)) {
-        filteringProducts.push(product);
-      }
-    }
-    this.#productsModel.filteringAndSortingProducts = filteringProducts;
   };
 
   adaptFilterToType(itemFilter) {
@@ -75,5 +55,12 @@ export default class FiltersPresenter {
         type = 'all';
     }
     return type;
+  }
+
+  adaptFilterToColor(itemFilter) {
+    if (itemFilter.delete('lilac')) {
+      itemFilter.add('violet');
+    }
+    return itemFilter;
   }
 }

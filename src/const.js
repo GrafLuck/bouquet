@@ -7,6 +7,15 @@ const Method = {
   DELETE: 'DELETE',
 }
 
+const BOUQUET_TYPE = new Map([
+  ['all', 'Для всех'],
+  ['birthdayboy', 'Имениннику'],
+  ['bridge', 'Невесте'],
+  ['motherday', 'Маме'],
+  ['colleagues', 'Коллеге'],
+  ['forlove', 'Любимой']
+]);
+
 const FiltersReason = {
   ALL: {
     id: '0',
@@ -91,6 +100,7 @@ export {
   AUTHORIZATION,
   END_POINT,
   Method,
+  BOUQUET_TYPE,
   FiltersReason,
   FiltersColor,
   COUNT_DISPLAY_PRODUCTS

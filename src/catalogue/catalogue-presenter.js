@@ -20,21 +20,24 @@ export default class CataloguePresenter {
   #container = null;
   #catalogCardPresenters = new Map();
 
-  constructor({ container, productsModel, cartModel, buttonHeartModel }) {
+  constructor({ container, productsModel, cartModel, buttonHeartModel, buttonShowMoreModel }) {
     this.#productsModel = productsModel;
     this.#buttonHeartModel = buttonHeartModel;
     this.#cartModel = cartModel;
-    this.#buttonShowMoreModel = new ButtonShowMoreModel();
+    this.#buttonShowMoreModel = buttonShowMoreModel;
     this.#catalogueView = new CatalogueView();
     this.#container = container;
     this.#buttonShowMoreModel.addObserver(this.#rerenderProductsList);
+    this.#productsModel.addObserver(this.#rerenderProductsList);
   }
 
   init() {
     render(this.#catalogueView, this.#container, RenderPosition.AFTERBEGIN);
     this.#renderSorting();
     this.#renderCards();
-    this.#renderButtonShowMore();
+    if (COUNT_DISPLAY_PRODUCTS * this.#buttonShowMoreModel.page < this.#productsModel.filteringAndSortingProducts.length) {
+      this.#renderButtonShowMore();
+    }
     this.#renderButtonToTopPresenter();
   }
 
@@ -44,10 +47,10 @@ export default class CataloguePresenter {
   }
 
   #renderCards() {
-    for (let i = 0; i < Math.min(COUNT_DISPLAY_PRODUCTS * this.#buttonShowMoreModel.page, this.#productsModel.products.length); i++) {
-      this.#renderCatalogCard(this.#productsModel.products[i]);
+    for (let i = 0; i < Math.min(COUNT_DISPLAY_PRODUCTS * this.#buttonShowMoreModel.page, this.#productsModel.filteringAndSortingProducts.length); i++) {
+      this.#renderCatalogCard(this.#productsModel.filteringAndSortingProducts[i]);
     }
-    if (COUNT_DISPLAY_PRODUCTS * this.#buttonShowMoreModel.page >= this.#productsModel.products.length) {
+    if (COUNT_DISPLAY_PRODUCTS * this.#buttonShowMoreModel.page >= this.#productsModel.filteringAndSortingProducts.length) {
       this.#removeButtonShowMore();
     }
   }
@@ -82,6 +85,7 @@ export default class CataloguePresenter {
 
   #removeButtonShowMore() {
     this.#buttonShowMorePresenter.removeButton();
+    this.#buttonShowMorePresenter = null;
   }
 
   #renderButtonToTopPresenter() {
@@ -92,5 +96,8 @@ export default class CataloguePresenter {
   #rerenderProductsList = () => {
     this.#removeAllCards();
     this.#renderCards();
+    if (!this.#buttonShowMorePresenter && (COUNT_DISPLAY_PRODUCTS * this.#buttonShowMoreModel.page < this.#productsModel.filteringAndSortingProducts.length)) {
+      this.#renderButtonShowMore();
+    }
   };
 }

@@ -18,6 +18,7 @@ import ProductsApiService from "./api/products-api-service";
 import ProductsModel from "./models/products-model";
 import { AUTHORIZATION, END_POINT } from "./const";
 import ButtonHeartModel from "./models/button-heart-model";
+import ButtonShowMoreModel from "./models/button-show-more-model";
 
 
 // Код для работы попапов, не удаляйте его
@@ -35,6 +36,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const cartModel = new CartModel({ cartApiService });
   const productsModel = new ProductsModel({ productsApiService });
   const buttonHeartModel = new ButtonHeartModel();
+  const buttonShowMoreModel = new ButtonShowMoreModel();
 
   Promise.all([productsModel.init(), cartModel.init()]).then(() => {
     headerCountPresenter.init();
@@ -51,6 +53,12 @@ window.addEventListener("DOMContentLoaded", () => {
   const missionPresenter = new MissionPresenter({ container: mainContainer });
   const heroPresenter = new HeroPresenter({ container: mainContainer });
   const advantagesPresenter = new AdvantagesPresenter({ container: mainContainer });
-  const filtersPresenter = new FiltersPresenter({ container: mainContainer });
-  const cataloguePresenter = new CataloguePresenter({ container: mainContainer, productsModel: productsModel, cartModel: cartModel, buttonHeartModel: buttonHeartModel });
+  const filtersPresenter = new FiltersPresenter({ container: mainContainer, productsModel: productsModel, buttonShowMoreModel: buttonShowMoreModel });
+  const cataloguePresenter = new CataloguePresenter({
+    container: mainContainer,
+    productsModel: productsModel,
+    cartModel: cartModel,
+    buttonHeartModel: buttonHeartModel,
+    buttonShowMoreModel: buttonShowMoreModel,
+  });
 });

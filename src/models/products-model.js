@@ -3,8 +3,9 @@ import Observable from '../framework/observable.js';
 export default class ProductsModel extends Observable {
   #productsApiService = null;
   #products = [];
+  #filteringAndSortingProducts = [];
 
-  constructor({productsApiService}) {
+  constructor({ productsApiService }) {
     super();
     this.#productsApiService = productsApiService;
   }
@@ -13,8 +14,18 @@ export default class ProductsModel extends Observable {
     return this.#products;
   }
 
+  get filteringAndSortingProducts() {
+    return this.#filteringAndSortingProducts;
+  }
+
+  set filteringAndSortingProducts(products) {
+    this.#filteringAndSortingProducts = products;
+    this._notify('FILTER_CHANGE', this.filteringAndSortingProducts);
+  }
+
   async init() {
     this.#products = await this.#productsApiService.products;
+    this.#filteringAndSortingProducts = Array.from(structuredClone({ ...this.#products, length: this.#products.length }));
   }
 
   async getProduct(id) {

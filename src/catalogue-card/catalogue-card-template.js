@@ -52,7 +52,7 @@ function createCataloguePopupTemplate(card) {
           <h3 class="title title--h2">${title}</h3><b class="price price--size-big">${price}<span>Р</span></b>
         </div>
         <p class="text text--size-40">${description}</p>
-        <button class="btn btn--outlined btn--full-width product-description__button" type="button" data-focus>отложить
+        <button class="btn btn--outlined btn--full-width product-description__button" type="button" data-focus>${isActive ? 'отложено' : 'отложить'}
         </button>
       </div>
     </div>

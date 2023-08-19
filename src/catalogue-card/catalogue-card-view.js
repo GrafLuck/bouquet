@@ -18,6 +18,10 @@ export default class CatalogueCardView extends AbstractStatefulView {
     return createCatalogueCardTemplate(this._state);
   }
 
+  get buttonHeart() {
+    return this.element.querySelector('.button-heart');
+  }
+
   get buttonHeartBody() {
     return this.element.querySelector('.button-heart__body');
   }
@@ -34,6 +38,6 @@ export default class CatalogueCardView extends AbstractStatefulView {
 
   #onCardClick = (evt) => {
     evt.preventDefault();
-    this.#handleCartClick();
+    this.#handleCartClick(evt);
   }
 }

@@ -91,7 +91,10 @@ export default class CatalogueCardPresenter {
 
   };
 
-  #handleCartClick = () => {
+  #handleCartClick = (evt) => {
+    if (evt.target.classList === this.#catalogCardView.buttonHeart.classList) {
+      return;
+    }
     this.#productsModel.getProduct(this.#product.id).then((product) => {
       this.#catalogPopupView = new CataloguePopupView({
         card: {

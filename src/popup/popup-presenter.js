@@ -1,5 +1,5 @@
 import CatalogueCardPopupPresenter from "../catalogue-card/catalogue-card-popup-presenter";
-import { RenderPosition, render } from "../framework/render";
+import { RenderPosition, remove, render } from "../framework/render";
 import PopupSumPresenter from "../popup-sum/popup-sum-presenter";
 import PopupView from "./popup-view";
 
@@ -24,7 +24,8 @@ export default class PopupPresenter {
         count: this.#cartModel.cart.productCount,
         price: this.#cartModel.cart.sum
       },
-      handleButtonCleanPopupClick: this.#handleButtonCleanPopupClick
+      handleButtonCleanPopupClick: this.#handleButtonCleanPopupClick,
+      handleButtonClosePopupClick: this.#handleButtonClosePopupClick
     });
     render(this.#popupView, this.#container, RenderPosition.AFTEREND);
     this.#renderCardList();
@@ -51,6 +52,11 @@ export default class PopupPresenter {
 
   #handleButtonCleanPopupClick = () => {
     this.#removeAllCards();
+  };
+
+  #handleButtonClosePopupClick = () => {
+    document.querySelector('main').style = 'display:block;';
+    remove(this.#popupView);
   };
 
   #removeAllCards() {

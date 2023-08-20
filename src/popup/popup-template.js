@@ -1,5 +1,4 @@
-function createPopupTemplate(card) {
-  const { count, price } = card;
+function createPopupTemplate() {
   return (`
     <section class="popup-deferred" style="display:block;">
       <div class="popup-deferred__wrapper">

@@ -4,12 +4,15 @@ import { createPopupTemplate } from "./popup-template";
 export default class PopupView extends AbstractView {
   #card = null;
   #handleButtonCleanPopupClick = null;
+  #handleButtonClosePopupClick = null;
 
-  constructor({ card, handleButtonCleanPopupClick }) {
+  constructor({ card, handleButtonCleanPopupClick, handleButtonClosePopupClick }) {
     super();
     this.#card = card;
     this.#handleButtonCleanPopupClick = handleButtonCleanPopupClick;
+    this.#handleButtonClosePopupClick = handleButtonClosePopupClick;
     this.element.querySelector('.popup-deferred__btn-clean').addEventListener('click', this.#onButtonCleanPopupClick);
+    this.element.querySelector('.hero__popupclose').addEventListener('click', this.#onButtonClosePopupClick);
   }
 
   get template() {
@@ -27,5 +30,10 @@ export default class PopupView extends AbstractView {
   #onButtonCleanPopupClick = (evt) => {
     evt.preventDefault();
     this.#handleButtonCleanPopupClick();
+  };
+
+  #onButtonClosePopupClick = (evt) => {
+    evt.preventDefault();
+    this.#handleButtonClosePopupClick();
   };
 }

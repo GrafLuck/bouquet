@@ -24,7 +24,7 @@ function createCardPopupTemplate(card) {
             </svg>
           </button>
         </div>
-        <div class="deferred-card__price"><b class="price price--size-middle-p">${price}<span>Р</span></b>
+        <div class="deferred-card__price"><b class="price price--size-middle-p">${price * count}<span>Р</span></b>
         </div>
         <button class="btn-close deferred-card__close-btn" type="button">
           <svg width="55" height="56" aria-hidden="true">

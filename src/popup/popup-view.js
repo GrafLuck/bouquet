@@ -2,12 +2,15 @@ import AbstractView from "../framework/view/abstract-view";
 import { createPopupTemplate } from "./popup-template";
 
 export default class PopupView extends AbstractView {
-  constructor() {
+  #card = null;
+
+  constructor({ card }) {
     super();
+    this.#card = card;
   }
 
   get template() {
-    return createPopupTemplate();
+    return createPopupTemplate(this.#card);
   }
 
   get productsContainer() {

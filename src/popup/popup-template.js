@@ -1,4 +1,5 @@
-function createPopupTemplate() {
+function createPopupTemplate(card) {
+  const { count, price } = card;
   return (`
     <section class="popup-deferred" style="display:block;">
       <div class="popup-deferred__wrapper">
@@ -44,10 +45,10 @@ function createPopupTemplate() {
             <p class="text text--total">Итого вы выбрали:</p>
             <div class="popup-deferred__block-wrap">
               <div class="popup-deferred__block">
-                <p class="text text--total">Букеты</p><span class="popup-deferred__count" data-atribut="count-defer">4</span>
+                <p class="text text--total">Букеты</p><span class="popup-deferred__count" data-atribut="count-defer">${count}</span>
               </div>
               <div class="popup-deferred__block">
-                <p class="text text--total">Сумма</p><b class="price price--size-middle-p">15 700<span>Р</span></b>
+                <p class="text text--total">Сумма</p><b class="price price--size-middle-p">${price}<span>Р</span></b>
               </div>
             </div>
           </div>

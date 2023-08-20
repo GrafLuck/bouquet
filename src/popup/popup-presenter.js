@@ -1,5 +1,6 @@
 import CatalogueCardPopupPresenter from "../catalogue-card/catalogue-card-popup-presenter";
 import { RenderPosition, render } from "../framework/render";
+import PopupSumPresenter from "../popup-sum/popup-sum-presenter";
 import PopupView from "./popup-view";
 
 export default class PopupPresenter {
@@ -8,6 +9,7 @@ export default class PopupPresenter {
   #productModel = null;
   #cartModel = null;
   #catalogueCardPopupPresenter = null;
+  #popupSumPresenter = null;
 
   constructor({ container, productsModel, cartModel }) {
     this.#container = container;
@@ -37,8 +39,10 @@ export default class PopupPresenter {
         price: product.price,
         previewImage: product.previewImage
       };
-      this.#catalogueCardPopupPresenter = new CatalogueCardPopupPresenter({ container: this.#popupView.productsContainer, card: card, productsModel: this.#productModel });
+      this.#catalogueCardPopupPresenter = new CatalogueCardPopupPresenter({ container: this.#popupView.productsContainer, card: card, productsModel: this.#productModel, cartModel: this.#cartModel });
       this.#catalogueCardPopupPresenter.init();
     }
+    this.#popupSumPresenter = new PopupSumPresenter({ container: this.#popupView.popupSumContainer, count: this.#cartModel.countProducts, price: this.#cartModel.totalPrice, cartModel: this.#cartModel });
+    this.#popupSumPresenter.init();
   }
 }

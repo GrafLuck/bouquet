@@ -5,12 +5,14 @@ export default class CatalogueCardPopupPresenter {
   #container = null;
   #catalogueCardPopupView = null;
   #productsModel = null;
+  #cartModel = null;
   #card = null;
 
-  constructor({ container, card, productsModel }) {
+  constructor({ container, card, productsModel, cartModel }) {
     this.#container = container;
     this.#card = card;
     this.#productsModel = productsModel;
+    this.#cartModel = cartModel;
     this.#catalogueCardPopupView = new CatalogueCardPopupView({ card: card, handleButtonCloseClick: this.#handleButtonCloseClick });
   }
 
@@ -21,9 +23,9 @@ export default class CatalogueCardPopupPresenter {
   #handleButtonCloseClick = () => {
     this.#productsModel.deleteProductFromCart(this.#card.id).then(() => {
       this.removeCardPopup();
+      this.#cartModel.init();
 
 
-      //пересчитать количество и стоимость в шапке
       //пересчитать количество и стоимость в подвале
       //убрать отметки о том, что букет выбран на главной странице
     });

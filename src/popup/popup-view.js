@@ -17,5 +17,8 @@ export default class PopupView extends AbstractView {
     return this.element.querySelector('.popup-deferred__catalog');
   }
 
+  get popupSumContainer() {
+    return this.element.querySelector('.popup-deferred__sum');
+  }
 
 }

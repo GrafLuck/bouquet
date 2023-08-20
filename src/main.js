@@ -19,7 +19,7 @@ import ProductsModel from "./models/products-model";
 import { AUTHORIZATION, END_POINT } from "./const";
 import ButtonHeartModel from "./models/button-heart-model";
 import ButtonShowMoreModel from "./models/button-show-more-model";
-
+import PopupPresenter from "./popup/popup-presenter";
 
 // Код для работы попапов, не удаляйте его
 window.addEventListener("DOMContentLoaded", () => {
@@ -49,7 +49,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const headerContainer = document.querySelector('.header__container');
   const mainContainer = document.querySelector('main');
-  const headerCountPresenter = new HeaderCountPresenter({ container: headerContainer, cartModel: cartModel, buttonHeartModel: buttonHeartModel });
+  const popupPresenter = new PopupPresenter({ container: mainContainer });
+  const headerCountPresenter = new HeaderCountPresenter({ container: headerContainer, cartModel: cartModel, buttonHeartModel: buttonHeartModel, popupPresenter: popupPresenter });
   const missionPresenter = new MissionPresenter({ container: mainContainer });
   const heroPresenter = new HeroPresenter({ container: mainContainer });
   const advantagesPresenter = new AdvantagesPresenter({ container: mainContainer });

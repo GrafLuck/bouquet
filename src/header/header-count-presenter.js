@@ -6,11 +6,13 @@ export default class HeaderCountPresenter {
   #container = null;
   #cartModel = null;
   #buttonHeartModel = null;
+  #popupPresenter = null;
 
-  constructor({container, cartModel, buttonHeartModel}) {
+  constructor({ container, cartModel, buttonHeartModel, popupPresenter }) {
     this.#cartModel = cartModel;
     this.#buttonHeartModel = buttonHeartModel;
     this.#container = container;
+    this.#popupPresenter = popupPresenter;
     this.#buttonHeartModel.addObserver(this.#rerenderHeaderCountView);
   }
 
@@ -26,11 +28,22 @@ export default class HeaderCountPresenter {
   }
 
   #renderHeaderCountView() {
-    this.#headerCountView = new HeaderCountView({count: this.#cartModel.countProducts, price: this.#cartModel.totalPrice});
+    this.#headerCountView = new HeaderCountView({
+      totalInfo: {
+        count: this.#cartModel.countProducts,
+        price: this.#cartModel.totalPrice,
+      },
+      handleHeaderCountClick: this.#handleHeaderCountClick
+    });
     render(this.#headerCountView, this.#container);
   }
 
   #removeHeaderCountView() {
     remove(this.#headerCountView);
   }
+
+  #handleHeaderCountClick = () => {
+    document.querySelector('main').style = 'display:none;';
+    this.#popupPresenter.init();
+  };
 }

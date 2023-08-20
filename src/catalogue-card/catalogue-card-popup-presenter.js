@@ -1,16 +1,35 @@
-import { render } from "../framework/render";
+import { remove, render } from "../framework/render";
 import CatalogueCardPopupView from "./catalogue-card-popup-view";
 
 export default class CatalogueCardPopupPresenter {
   #container = null;
   #catalogueCardPopupView = null;
+  #productsModel = null;
+  #card = null;
 
-  constructor({ container, card }) {
+  constructor({ container, card, productsModel }) {
     this.#container = container;
-    this.#catalogueCardPopupView = new CatalogueCardPopupView({ card: card });
+    this.#card = card;
+    this.#productsModel = productsModel;
+    this.#catalogueCardPopupView = new CatalogueCardPopupView({ card: card, handleButtonCloseClick: this.#handleButtonCloseClick });
   }
 
   init() {
     render(this.#catalogueCardPopupView, this.#container);
+  }
+
+  #handleButtonCloseClick = () => {
+    this.#productsModel.deleteProductFromCart(this.#card.id).then(() => {
+      this.removeCardPopup();
+
+
+      //пересчитать количество и стоимость в шапке
+      //пересчитать количество и стоимость в подвале
+      //убрать отметки о том, что букет выбран на главной странице
+    });
+  };
+
+  removeCardPopup() {
+    remove(this.#catalogueCardPopupView);
   }
 }

@@ -37,7 +37,7 @@ export default class PopupPresenter {
         price: product.price,
         previewImage: product.previewImage
       };
-      this.#catalogueCardPopupPresenter = new CatalogueCardPopupPresenter({ container: this.#popupView.productsContainer, card: card });
+      this.#catalogueCardPopupPresenter = new CatalogueCardPopupPresenter({ container: this.#popupView.productsContainer, card: card, productsModel: this.#productModel });
       this.#catalogueCardPopupPresenter.init();
     }
   }

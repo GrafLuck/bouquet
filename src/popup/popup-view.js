@@ -16,4 +16,6 @@ export default class PopupView extends AbstractView {
   get productsContainer() {
     return this.element.querySelector('.popup-deferred__catalog');
   }
+
+
 }

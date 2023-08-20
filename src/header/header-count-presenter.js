@@ -5,26 +5,22 @@ export default class HeaderCountPresenter {
   #headerCountView = null;
   #container = null;
   #cartModel = null;
-  #buttonHeartModel = null;
   #popupPresenter = null;
 
-  constructor({ container, cartModel, buttonHeartModel, popupPresenter }) {
+  constructor({ container, cartModel, popupPresenter }) {
     this.#cartModel = cartModel;
-    this.#buttonHeartModel = buttonHeartModel;
     this.#container = container;
     this.#popupPresenter = popupPresenter;
-    this.#cartModel.addObserver(this.#rerenderHeaderCountView);
   }
 
   init() {
     this.#renderHeaderCountView();
+    this.#cartModel.addObserver(this.#rerenderHeaderCountView);
   }
 
   #rerenderHeaderCountView = () => {
-    this.#cartModel.init().then(() => {
-      this.#removeHeaderCountView();
-      this.#renderHeaderCountView();
-    });
+    this.#removeHeaderCountView();
+    this.#renderHeaderCountView();
   }
 
   #renderHeaderCountView() {

@@ -13,7 +13,12 @@ export default class CatalogueCardPopupPresenter {
     this.#card = card;
     this.#productsModel = productsModel;
     this.#cartModel = cartModel;
-    this.#catalogueCardPopupView = new CatalogueCardPopupView({ card: card, handleButtonCloseClick: this.#handleButtonCloseClick });
+    this.#catalogueCardPopupView = new CatalogueCardPopupView({
+      card: this.#card,
+      handleButtonCloseClick: this.#handleButtonCloseClick,
+      handleButtonMinusClick: this.#handleButtonMinusClick,
+      handleButtonPlusClick: this.#handleButtonPlusClick
+    });
   }
 
   init() {
@@ -22,16 +27,31 @@ export default class CatalogueCardPopupPresenter {
 
   #handleButtonCloseClick = () => {
     this.#productsModel.deleteProductFromCart(this.#card.id).then(() => {
-      this.removeCardPopup();
+      this.#removeCardPopup();
       this.#cartModel.init();
 
 
-      //пересчитать количество и стоимость в подвале
       //убрать отметки о том, что букет выбран на главной странице
     });
   };
 
-  removeCardPopup() {
+  #handleButtonMinusClick = () => {
+    this.#productsModel.deleteProductFromCart(this.#card.id).then(() => {
+      this.#cartModel.init();
+      //const countProduct = Object.entries(this.#cartModel.cart.products).find((product) => product[0] == this.#card.id)[1];
+      //убрать отметки о том, что букет выбран на главной странице
+    });
+  };
+
+  #handleButtonPlusClick = () => {
+    this.#productsModel.addProductToCart(this.#card.id).then(() => {
+      this.#cartModel.init();
+      //const countProduct = Object.entries(this.#cartModel.cart.products).find((product) => product[0] == this.#card.id)[1];
+      //убрать отметки о том, что букет выбран на главной странице
+    });
+  };
+
+  #removeCardPopup() {
     remove(this.#catalogueCardPopupView);
   }
 }

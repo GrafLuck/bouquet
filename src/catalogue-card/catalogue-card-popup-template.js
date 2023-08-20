@@ -13,12 +13,12 @@ function createCardPopupTemplate(card) {
           <p class="text text--size-40">${description}</p>
         </div>
         <div class="deferred-card__count">
-          <button class="btn-calculate" type="button">
+          <button class="btn-calculate" type="button" id="btn-calculate-minus">
             <svg width="30" height="27" aria-hidden="true">
               <use xlink:href="#icon-minus"></use>
             </svg>
           </button><span>${count}</span>
-          <button class="btn-calculate" type="button">
+          <button class="btn-calculate" type="button" id="btn-calculate-plus">
             <svg width="30" height="28" aria-hidden="true">
               <use xlink:href="#icon-cross"></use>
             </svg>

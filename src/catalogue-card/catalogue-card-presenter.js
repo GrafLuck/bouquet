@@ -9,13 +9,13 @@ export default class CatalogueCardPresenter {
   #catalogPopupView = null;
   #container = null;
   #productsModel = null;
-  #buttonHeartModel = null;
+  #cartModel = null;
   #product = null;
   #isActive = false;
 
-  constructor({ container, productsModel, buttonHeartModel, product, isActive }) {
+  constructor({ container, productsModel, cartModel, product, isActive }) {
     this.#productsModel = productsModel;
-    this.#buttonHeartModel = buttonHeartModel;
+    this.#cartModel = cartModel;
     this.#product = product;
     this.#isActive = isActive;
     this.#container = container;
@@ -76,14 +76,14 @@ export default class CatalogueCardPresenter {
     const isAdd = this.#catalogCardView.buttonHeartBody.classList.toggle('button-heart__body-active');
     if (isAdd) {
       this.#productsModel.addProductToCart(this.#product.id).then(() => {
-        this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
+        this.#cartModel.init();
         this.#isActive = true;
         this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive })
       });
 
     } else {
       this.#productsModel.deleteProductFromCart(this.#product.id).then(() => {
-        this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
+        this.#cartModel.init();
         this.#isActive = false;
         this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive })
       });
@@ -94,7 +94,7 @@ export default class CatalogueCardPresenter {
     const isAdd = this.#catalogPopupView.popupButton.innerText === 'отложить';
     if (isAdd) {
       this.#productsModel.addProductToCart(this.#product.id).then(() => {
-        this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
+        this.#cartModel.init();
         this.#isActive = true;
         this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive });
         this.#catalogPopupView.updateElement({ ...this.#product, isActive: this.#isActive });
@@ -103,7 +103,7 @@ export default class CatalogueCardPresenter {
       });
     } else {
       this.#productsModel.deleteProductFromCart(this.#product.id).then(() => {
-        this.#buttonHeartModel.toggle = !this.#buttonHeartModel.toggle;
+        this.#cartModel.init();
         this.#isActive = false;
         this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive });
         this.#catalogPopupView.updateElement({ ...this.#product, isActive: this.#isActive });

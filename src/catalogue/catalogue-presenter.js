@@ -63,6 +63,7 @@ export default class CataloguePresenter {
     this.#catalogueCardPresenter = new CatalogueCardPresenter({
       container: this.#catalogueView.cardListContainer,
       productsModel: this.#productsModel,
+      cartModel: this.#cartModel,
       buttonHeartModel: this.#buttonHeartModel,
       product: product,
       isActive: isActive

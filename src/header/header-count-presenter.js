@@ -13,7 +13,7 @@ export default class HeaderCountPresenter {
     this.#buttonHeartModel = buttonHeartModel;
     this.#container = container;
     this.#popupPresenter = popupPresenter;
-    this.#buttonHeartModel.addObserver(this.#rerenderHeaderCountView);
+    this.#cartModel.addObserver(this.#rerenderHeaderCountView);
   }
 
   init() {

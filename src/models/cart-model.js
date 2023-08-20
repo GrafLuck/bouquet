@@ -4,7 +4,7 @@ export default class CartModel extends Observable {
   #cartApiService = null;
   #cart = null;
 
-  constructor({cartApiService}) {
+  constructor({ cartApiService }) {
     super();
     this.#cartApiService = cartApiService;
   }
@@ -23,5 +23,6 @@ export default class CartModel extends Observable {
 
   async init() {
     this.#cart = await this.#cartApiService.cart;
+    this._notify('UPDATE_CART', this.#cart);
   }
 }

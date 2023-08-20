@@ -8,14 +8,18 @@ export default class PopupPresenter {
   #popupView = null;
   #productsModel = null;
   #cartModel = null;
+  #buttonShowMoreModel = null;
+  #filtersPresenter = null;
   #catalogueCardPopupPresenter = null;
   #popupSumPresenter = null;
   #catalogueCardPopupPresenters = new Map();
 
-  constructor({ container, productsModel, cartModel }) {
+  constructor({ container, productsModel, cartModel, filtersPresenter, buttonShowMoreModel }) {
     this.#container = container;
     this.#productsModel = productsModel;
     this.#cartModel = cartModel;
+    this.#filtersPresenter = filtersPresenter;
+    this.#buttonShowMoreModel = buttonShowMoreModel;
   }
 
   init() {
@@ -25,7 +29,8 @@ export default class PopupPresenter {
         price: this.#cartModel.cart.sum
       },
       handleButtonCleanPopupClick: this.#handleButtonCleanPopupClick,
-      handleButtonClosePopupClick: this.#handleButtonClosePopupClick
+      handleButtonClosePopupClick: this.#handleButtonClosePopupClick,
+      handleButtonReturnToCatalogClick: this.#handleButtonReturnToCatalogClick
     });
     render(this.#popupView, this.#container, RenderPosition.AFTEREND);
     this.#renderCardList();
@@ -57,6 +62,15 @@ export default class PopupPresenter {
   #handleButtonClosePopupClick = () => {
     document.querySelector('main').style = 'display:block;';
     remove(this.#popupView);
+  };
+
+  #handleButtonReturnToCatalogClick = () => {
+    document.querySelector('main').style = 'display:block;';
+    remove(this.#popupView);
+    this.#filtersPresenter.filterProducts('reason', 'all');
+    this.#filtersPresenter.filterProducts('color', new Set().add('all'));
+    this.#filtersPresenter.rerenderFilters();
+    this.#buttonShowMoreModel.page = 1;
   };
 
   #removeAllCards() {

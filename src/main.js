@@ -47,12 +47,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const headerContainer = document.querySelector('.header__container');
   const mainContainer = document.querySelector('main');
-  const popupPresenter = new PopupPresenter({ container: mainContainer, productsModel: productsModel, cartModel: cartModel });
+  const filtersPresenter = new FiltersPresenter({ container: mainContainer, productsModel: productsModel, buttonShowMoreModel: buttonShowMoreModel });
+  const popupPresenter = new PopupPresenter({
+    container: mainContainer,
+    productsModel: productsModel,
+    cartModel: cartModel,
+    buttonShowMoreModel: buttonShowMoreModel,
+    filtersPresenter: filtersPresenter
+  });
   const headerCountPresenter = new HeaderCountPresenter({ container: headerContainer, cartModel: cartModel, popupPresenter: popupPresenter });
   const missionPresenter = new MissionPresenter({ container: mainContainer });
   const heroPresenter = new HeroPresenter({ container: mainContainer });
   const advantagesPresenter = new AdvantagesPresenter({ container: mainContainer });
-  const filtersPresenter = new FiltersPresenter({ container: mainContainer, productsModel: productsModel, buttonShowMoreModel: buttonShowMoreModel });
   const cataloguePresenter = new CataloguePresenter({
     container: mainContainer,
     productsModel: productsModel,

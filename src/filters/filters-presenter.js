@@ -22,18 +22,27 @@ export default class FiltersPresenter {
   }
 
   #handleFilterReasonChange = (itemFilter) => {
-    const type = this.adaptFilterToType(itemFilter);
-    this.#productsModel.filterProducts('reason', type);
-    this.#buttonShowMoreModel.page = 1;
+    this.filterProducts('reason', itemFilter);
   };
 
   #handleFilterColorChange = (colors) => {
-    colors = this.adaptFilterToColor(colors);
-    this.#productsModel.filterProducts('color', colors);
-    this.#buttonShowMoreModel.page = 1;
+    this.filterProducts('color', colors);
   };
 
-  adaptFilterToType(itemFilter) {
+  filterProducts(filter, itemFilter) {
+    if (filter === 'reason') {
+      const type = this.#adaptFilterToType(itemFilter);
+      this.#productsModel.filterProducts('reason', type);
+      this.#buttonShowMoreModel.page = 1;
+    }
+    if (filter === 'color') {
+      itemFilter = this.#adaptFilterToColor(itemFilter);
+      this.#productsModel.filterProducts('color', itemFilter);
+      this.#buttonShowMoreModel.page = 1;
+    }
+  }
+
+  #adaptFilterToType(itemFilter) {
     let type;
     switch (itemFilter.split('-')[1]) {
       case 'birthday':
@@ -57,10 +66,14 @@ export default class FiltersPresenter {
     return type;
   }
 
-  adaptFilterToColor(itemFilter) {
+  #adaptFilterToColor(itemFilter) {
     if (itemFilter.delete('lilac')) {
       itemFilter.add('violet');
     }
     return itemFilter;
+  }
+
+  rerenderFilters() {
+    this.#filtersView.rerenderFilters();
   }
 }

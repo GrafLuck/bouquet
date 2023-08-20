@@ -1,20 +1,24 @@
-import AbstractView from "../framework/view/abstract-view";
+import AbstractStatefulView from "../framework/view/abstract-stateful-view";
 import { createFiltersTemplate } from './filters-template.js';
 
-export default class FiltersView extends AbstractView {
+export default class FiltersView extends AbstractStatefulView {
   #handleFilterReasonChange = null;
   #handleFilterColorChange = null;
 
   constructor({ handleFilterReasonChange, handleFilterColorChange }) {
     super();
-    this.element.querySelector('.filter-reason').addEventListener('change', this.#onFilterReasonChange);
-    this.element.querySelector('.filter-color').addEventListener('change', this.#onFilterColorChange);
+    this._restoreHandlers();
     this.#handleFilterReasonChange = handleFilterReasonChange;
     this.#handleFilterColorChange = handleFilterColorChange;
   }
 
   get template() {
     return createFiltersTemplate();
+  }
+
+  _restoreHandlers() {
+    this.element.querySelector('.filter-reason').addEventListener('change', this.#onFilterReasonChange);
+    this.element.querySelector('.filter-color').addEventListener('change', this.#onFilterColorChange);
   }
 
   #onFilterReasonChange = (evt) => {
@@ -31,4 +35,8 @@ export default class FiltersView extends AbstractView {
     }
     this.#handleFilterColorChange(colors);
   };
+
+  rerenderFilters() {
+    this.updateElement({});
+  }
 }

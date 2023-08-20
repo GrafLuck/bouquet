@@ -27,7 +27,7 @@ export default class CatalogueCardPopupPresenter {
 
   #handleButtonCloseClick = () => {
     this.#productsModel.deleteProductFromCart(this.#card.id).then(() => {
-      this.#removeCardPopup();
+      this.removeCardPopup();
       this.#cartModel.init();
 
 
@@ -51,7 +51,7 @@ export default class CatalogueCardPopupPresenter {
     });
   };
 
-  #removeCardPopup() {
+  removeCardPopup() {
     remove(this.#catalogueCardPopupView);
   }
 }

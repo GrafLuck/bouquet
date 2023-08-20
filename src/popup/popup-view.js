@@ -3,10 +3,13 @@ import { createPopupTemplate } from "./popup-template";
 
 export default class PopupView extends AbstractView {
   #card = null;
+  #handleButtonCleanPopupClick = null;
 
-  constructor({ card }) {
+  constructor({ card, handleButtonCleanPopupClick }) {
     super();
     this.#card = card;
+    this.#handleButtonCleanPopupClick = handleButtonCleanPopupClick;
+    this.element.querySelector('.popup-deferred__btn-clean').addEventListener('click', this.#onButtonCleanPopupClick);
   }
 
   get template() {
@@ -21,4 +24,8 @@ export default class PopupView extends AbstractView {
     return this.element.querySelector('.popup-deferred__sum');
   }
 
+  #onButtonCleanPopupClick = (evt) => {
+    evt.preventDefault();
+    this.#handleButtonCleanPopupClick();
+  };
 }

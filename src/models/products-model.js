@@ -70,4 +70,13 @@ export default class ProductsModel extends Observable {
     this.#currentFilterReason = type;
     this.#currentFilterColor = colors;
   }
+
+  sortProducts(direction = 'increase') {
+    if (direction === 'increase') {
+      this.#filteringAndSortingProducts.sort((a, b) => a.price > b.price);
+    }
+    if (direction === 'descending') {
+
+    }
+  }
 }

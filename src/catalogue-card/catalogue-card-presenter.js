@@ -1,6 +1,6 @@
 import { remove, render } from "../framework/render";
 import CatalogueCardView from "./catalogue-card-view";
-import CataloguePopupView from "./catalogue-popup-view";
+import CatalogueCardModalView from "./catalogue-card-modal-view";
 import { modals } from "../modals/init-modals.js";
 import { ImageSlider } from "../utils/image-slider.js";
 
@@ -118,7 +118,7 @@ export default class CatalogueCardPresenter {
       return;
     }
     this.#productsModel.getProduct(this.#product.id).then((product) => {
-      this.#catalogPopupView = new CataloguePopupView({
+      this.#catalogPopupView = new CatalogueCardModalView({
         card: {
           title: product.title,
           description: product.description,

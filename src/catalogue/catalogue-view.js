@@ -21,4 +21,8 @@ export default class CatalogueView extends AbstractView {
   get buttonContainer() {
     return this.element.querySelector('.catalogue__btn-wrap');
   }
+
+  get catalogueHeaderContainer() {
+    return this.element.querySelector('.catalogue__header');
+  }
 }

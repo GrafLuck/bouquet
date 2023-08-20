@@ -6,9 +6,11 @@ import ButtonShowMorePresenter from "../button-show-more/button-show-more-presen
 import ButtonToTopPresenter from "../button-to-top/button-to-top-presenter";
 import { COUNT_DISPLAY_PRODUCTS } from "../const";
 import ButtonShowMoreModel from "../models/button-show-more-model";
+import CatalogueEmptyView from "./catalogue-empty-view";
 
 export default class CataloguePresenter {
   #catalogueView = null;
+  #catalogueEmptyView = null;
   #sortingPresenter = null;
   #catalogueCardPresenter = null;
   #buttonShowMorePresenter = null;
@@ -26,6 +28,7 @@ export default class CataloguePresenter {
     this.#cartModel = cartModel;
     this.#buttonShowMoreModel = buttonShowMoreModel;
     this.#catalogueView = new CatalogueView();
+    this.#catalogueEmptyView = new CatalogueEmptyView();
     this.#container = container;
     this.#buttonShowMoreModel.addObserver(this.#rerenderProductsList);
     this.#productsModel.addObserver(this.#rerenderProductsList);
@@ -47,12 +50,20 @@ export default class CataloguePresenter {
   }
 
   #renderCards() {
+    if (this.#productsModel.filteringAndSortingProducts.length === 0) {
+      this.#renderEmptyCatalog();
+    }
+
     for (let i = 0; i < Math.min(COUNT_DISPLAY_PRODUCTS * this.#buttonShowMoreModel.page, this.#productsModel.filteringAndSortingProducts.length); i++) {
       this.#renderCatalogCard(this.#productsModel.filteringAndSortingProducts[i]);
     }
     if (this.#buttonShowMorePresenter && (COUNT_DISPLAY_PRODUCTS * this.#buttonShowMoreModel.page >= this.#productsModel.filteringAndSortingProducts.length)) {
       this.#removeButtonShowMore();
     }
+  }
+
+  #renderEmptyCatalog() {
+    render(this.#catalogueEmptyView, this.#catalogueView.catalogueHeaderContainer, RenderPosition.AFTEREND);
   }
 
   #renderCatalogCard(product) {
@@ -73,6 +84,10 @@ export default class CataloguePresenter {
   }
 
   #removeAllCards() {
+    if (this.#catalogueEmptyView) {
+      remove(this.#catalogueEmptyView);
+    }
+
     this.#catalogCardPresenters.forEach((cardPresenter) => {
       cardPresenter.removeCard();
     });

@@ -50,7 +50,7 @@ export default class CataloguePresenter {
     for (let i = 0; i < Math.min(COUNT_DISPLAY_PRODUCTS * this.#buttonShowMoreModel.page, this.#productsModel.filteringAndSortingProducts.length); i++) {
       this.#renderCatalogCard(this.#productsModel.filteringAndSortingProducts[i]);
     }
-    if (COUNT_DISPLAY_PRODUCTS * this.#buttonShowMoreModel.page >= this.#productsModel.filteringAndSortingProducts.length) {
+    if (this.#buttonShowMorePresenter && (COUNT_DISPLAY_PRODUCTS * this.#buttonShowMoreModel.page >= this.#productsModel.filteringAndSortingProducts.length)) {
       this.#removeButtonShowMore();
     }
   }

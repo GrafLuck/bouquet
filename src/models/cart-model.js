@@ -14,11 +14,11 @@ export default class CartModel extends Observable {
   }
 
   get countProducts() {
-    return this.#cart === null ? 0 : this.#cart.productCount;
+    return Object.hasOwn(this.#cart, 'productCount') ? this.#cart.productCount : 0;
   }
 
   get totalPrice() {
-    return this.#cart === null ? 0 : this.#cart.sum;
+    return Object.hasOwn(this.#cart, 'sum') ? this.#cart.sum : 0;
   }
 
   async init() {

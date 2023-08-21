@@ -1,8 +1,8 @@
 function createCardPopupTemplate(card) {
-  const { title, description, price, previewImage, count } = card;
+  const { title, description, price, previewImage, count, isLoading } = card;
   return (`
     <li class="popup-deferred__item">
-      <div class="deferred-card">
+      <div class="deferred-card ${isLoading ? 'is-loading' : ''}">
         <div class="deferred-card__img">
           <picture>
             <img src="${previewImage}" width="233" height="393" alt="букет">
@@ -31,7 +31,7 @@ function createCardPopupTemplate(card) {
             <use xlink:href="#icon-close-big"></use>
           </svg>
         </button>
-        <svg class="deferred-card__close-btn deferred-card__loader" width="56" height="56" aria-hidden="true">
+        <svg class="deferred-card__close-btn deferred-card__loader" width="56" height="56" aria-hidden="false">
           <use xlink:href="#icon-loader"></use>
         </svg>
       </div>

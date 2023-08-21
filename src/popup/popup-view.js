@@ -7,7 +7,7 @@ export default class PopupView extends AbstractStatefulView {
 
   constructor({ card, handleButtonClosePopupClick, handleButtonReturnToCatalogClick }) {
     super();
-    this._state = { ...card, isClean: false };
+    this._state = { ...card, isLoading: false };
     this.#handleButtonClosePopupClick = handleButtonClosePopupClick;
     this.#handleButtonReturnToCatalogClick = handleButtonReturnToCatalogClick;
     this._restoreHandlers();
@@ -36,6 +36,7 @@ export default class PopupView extends AbstractStatefulView {
 
   #onButtonClosePopupClick = (evt) => {
     evt.preventDefault();
+    this.updateElement({ isLoading: true });
     this.#handleButtonClosePopupClick();
   };
 

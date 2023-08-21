@@ -27,6 +27,7 @@ export default class CatalogueCardPopupView extends AbstractStatefulView {
 
   #onButtonCloseClick = (evt) => {
     evt.preventDefault();
+    this.updateElement({ isLoading: true });
     this.#handleButtonCloseClick();
   };
 

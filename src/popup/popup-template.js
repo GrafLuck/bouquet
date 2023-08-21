@@ -1,9 +1,9 @@
 function createPopupTemplate(state) {
-  const { isClean } = state;
+  const { isLoading } = state;
   return (`
     <section class="popup-deferred" style="display:block;">
       <div class="popup-deferred__wrapper">
-        <section class="hero hero--popup">
+        <section class="hero hero--popup ${isLoading ? 'is-loading' : ''}">
           <div class="hero__wrapper">
             <div class="hero__background">
               <picture>

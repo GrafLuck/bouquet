@@ -1,25 +1,20 @@
-import AbstractView from "../framework/view/abstract-view";
+import AbstractStatefulView from "../framework/view/abstract-stateful-view";
 import { createPopupTemplate } from "./popup-template";
 
-export default class PopupView extends AbstractView {
-  #card = null;
-  #handleButtonCleanPopupClick = null;
+export default class PopupView extends AbstractStatefulView {
   #handleButtonClosePopupClick = null;
   #handleButtonReturnToCatalogClick = null;
 
-  constructor({ card, handleButtonCleanPopupClick, handleButtonClosePopupClick, handleButtonReturnToCatalogClick }) {
+  constructor({ card, handleButtonClosePopupClick, handleButtonReturnToCatalogClick }) {
     super();
-    this.#card = card;
-    this.#handleButtonCleanPopupClick = handleButtonCleanPopupClick;
+    this._state = { ...card, isClean: false };
     this.#handleButtonClosePopupClick = handleButtonClosePopupClick;
     this.#handleButtonReturnToCatalogClick = handleButtonReturnToCatalogClick;
-    this.element.querySelector('.popup-deferred__btn-clean').addEventListener('click', this.#onButtonCleanPopupClick);
-    this.element.querySelector('.hero__popupclose').addEventListener('click', this.#onButtonClosePopupClick);
-    this.element.querySelector('.popup-deferred__btn').addEventListener('click', this.#onButtonReturnToCatalogClick);
+    this._restoreHandlers();
   }
 
   get template() {
-    return createPopupTemplate(this.#card);
+    return createPopupTemplate(this._state);
   }
 
   get productsContainer() {
@@ -30,10 +25,14 @@ export default class PopupView extends AbstractView {
     return this.element.querySelector('.popup-deferred__sum');
   }
 
-  #onButtonCleanPopupClick = (evt) => {
-    evt.preventDefault();
-    this.#handleButtonCleanPopupClick();
-  };
+  get ButtonCleanContainer() {
+    return this.element.querySelector('.popup-deferred__btn-container');
+  }
+
+  _restoreHandlers() {
+    this.element.querySelector('.hero__popupclose').addEventListener('click', this.#onButtonClosePopupClick);
+    this.element.querySelector('.popup-deferred__btn').addEventListener('click', this.#onButtonReturnToCatalogClick);
+  }
 
   #onButtonClosePopupClick = (evt) => {
     evt.preventDefault();

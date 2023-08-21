@@ -1,4 +1,5 @@
-function createPopupTemplate() {
+function createPopupTemplate(state) {
+  const { isClean } = state;
   return (`
     <section class="popup-deferred" style="display:block;">
       <div class="popup-deferred__wrapper">
@@ -34,11 +35,7 @@ function createPopupTemplate() {
 
           </ul>
           <div class="popup-deferred__btn-container">
-            <button class="btn btn--with-icon popup-deferred__btn-clean" type="button">очистить
-              <svg width="61" height="24" aria-hidden="true">
-                <use xlink:href="#icon-arrow"></use>
-              </svg>
-            </button>
+
           </div>
           <div class="popup-deferred__sum">
             <p class="text text--total">Итого вы выбрали:</p>

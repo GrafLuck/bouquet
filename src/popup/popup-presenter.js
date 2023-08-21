@@ -1,5 +1,6 @@
 import CatalogueCardPopupPresenter from "../catalogue-card/catalogue-card-popup-presenter";
 import { RenderPosition, remove, render } from "../framework/render";
+import PopupButtonCleanPresenter from "../popup-button-clean/popup-button-clean-presenter";
 import PopupSumPresenter from "../popup-sum/popup-sum-presenter";
 import PopupView from "./popup-view";
 
@@ -12,6 +13,7 @@ export default class PopupPresenter {
   #filtersPresenter = null;
   #catalogueCardPopupPresenter = null;
   #popupSumPresenter = null;
+  #popupButtonCleanPresenter = null;
   #catalogueCardPopupPresenters = new Map();
 
   constructor({ container, productsModel, cartModel, filtersPresenter, buttonShowMoreModel }) {
@@ -28,7 +30,6 @@ export default class PopupPresenter {
         count: this.#cartModel.cart.productCount,
         price: this.#cartModel.cart.sum
       },
-      handleButtonCleanPopupClick: this.#handleButtonCleanPopupClick,
       handleButtonClosePopupClick: this.#handleButtonClosePopupClick,
       handleButtonReturnToCatalogClick: this.#handleButtonReturnToCatalogClick
     });
@@ -53,11 +54,9 @@ export default class PopupPresenter {
     }
     this.#popupSumPresenter = new PopupSumPresenter({ container: this.#popupView.popupSumContainer, count: this.#cartModel.countProducts, price: this.#cartModel.totalPrice, cartModel: this.#cartModel });
     this.#popupSumPresenter.init();
+    this.#popupButtonCleanPresenter = new PopupButtonCleanPresenter({ container: this.#popupView.ButtonCleanContainer, handleRemoveCardsHandle: this.removeAllCards });
+    this.#popupButtonCleanPresenter.init();
   }
-
-  #handleButtonCleanPopupClick = () => {
-    this.#removeAllCards();
-  };
 
   #handleButtonClosePopupClick = () => {
     document.querySelector('main').style = 'display:block;';
@@ -73,7 +72,7 @@ export default class PopupPresenter {
     this.#buttonShowMoreModel.page = 1;
   };
 
-  #removeAllCards() {
+  removeAllCards = (updatePopupCleanButtonState) => {
     const promises = [];
     this.#catalogueCardPopupPresenters.forEach((_, id) => {
       let countProducts = this.#cartModel.cart.products[id];
@@ -87,6 +86,7 @@ export default class PopupPresenter {
         cardPopupPresenter.removeCardPopup();
       });
       this.#catalogueCardPopupPresenters.clear();
+      updatePopupCleanButtonState();
     });
   }
 }

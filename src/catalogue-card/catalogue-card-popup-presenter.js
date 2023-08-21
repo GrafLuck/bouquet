@@ -51,7 +51,7 @@ export default class CatalogueCardPopupPresenter {
     });
   };
 
-  removeCardPopup() {
+  removeCardPopup = () => {
     remove(this.#catalogueCardPopupView);
   }
 }

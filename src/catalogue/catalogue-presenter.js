@@ -45,7 +45,7 @@ export default class CataloguePresenter {
   }
 
   #renderSorting() {
-    this.#sortingPresenter = new SortingPresenter({ container: this.#catalogueView.sortingContainer });
+    this.#sortingPresenter = new SortingPresenter({ container: this.#catalogueView.sortingContainer, productsModel: this.#productsModel, buttonShowMoreModel: this.#buttonShowMoreModel });
     this.#sortingPresenter.init();
   }
 

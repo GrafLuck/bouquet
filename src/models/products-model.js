@@ -6,6 +6,7 @@ export default class ProductsModel extends Observable {
   #filteringAndSortingProducts = [];
   #currentFilterReason = 'all';
   #currentFilterColor = new Set().add('all');
+  #currentSorting = 'increase';
 
   constructor({ productsApiService }) {
     super();
@@ -28,6 +29,7 @@ export default class ProductsModel extends Observable {
   async init() {
     this.#products = await this.#productsApiService.products;
     this.#filteringAndSortingProducts = Array.from(structuredClone({ ...this.#products, length: this.#products.length }));
+    this.sortProducts();
   }
 
   async getProduct(id) {
@@ -67,16 +69,19 @@ export default class ProductsModel extends Observable {
     }
     this.#filteringAndSortingProducts = type !== 'all' ? this.products.filter((product) => product.type === type) : this.products;
     this.#filteringAndSortingProducts = !colors.has('all') ? this.#filteringAndSortingProducts.filter((product) => colors.has(product.color)) : this.#filteringAndSortingProducts;
+    this.sortProducts(this.#currentSorting);
     this.#currentFilterReason = type;
     this.#currentFilterColor = colors;
   }
 
   sortProducts(direction = 'increase') {
     if (direction === 'increase') {
-      this.#filteringAndSortingProducts.sort((a, b) => a.price > b.price);
+      this.#filteringAndSortingProducts.sort((a, b) => a.price - b.price);
+      this.#currentSorting = 'increase';
     }
     if (direction === 'descending') {
-
+      this.#filteringAndSortingProducts.sort((a, b) => b.price - a.price);
+      this.#currentSorting = 'descending';
     }
   }
 }

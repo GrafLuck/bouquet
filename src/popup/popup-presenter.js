@@ -80,6 +80,8 @@ export default class PopupPresenter {
   #handleButtonClosePopupClick = () => {
     this.#popupView.displayMainPage();
     remove(this.#popupView);
+    const temp = this.#buttonShowMoreModel.page;
+    this.#buttonShowMoreModel.page = temp;
   };
 
   #handleButtonReturnToCatalogClick = () => {

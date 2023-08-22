@@ -33,25 +33,18 @@ export default class CatalogueCardPopupPresenter {
     this.#productsModel.deleteProductFromCart(this.#card.id).then(() => {
       this.removeCardPopup();
       this.#cartModel.init();
-
-
-      //убрать отметки о том, что букет выбран на главной странице
     });
   };
 
   #handleButtonMinusClick = () => {
     this.#productsModel.deleteProductFromCart(this.#card.id).then(() => {
       this.#cartModel.init();
-      //const countProduct = Object.entries(this.#cartModel.cart.products).find((product) => product[0] == this.#card.id)[1];
-      //убрать отметки о том, что букет выбран на главной странице
     });
   };
 
   #handleButtonPlusClick = () => {
     this.#productsModel.addProductToCart(this.#card.id).then(() => {
       this.#cartModel.init();
-      //const countProduct = Object.entries(this.#cartModel.cart.products).find((product) => product[0] == this.#card.id)[1];
-      //убрать отметки о том, что букет выбран на главной странице
     });
   };
 }

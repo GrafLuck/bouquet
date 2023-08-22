@@ -1,8 +1,9 @@
 import CatalogueCardPopupPresenter from '../catalogue-card/catalogue-card-popup-presenter.js';
-import { RenderPosition, remove, render } from '../framework/render.js';
 import PopupButtonCleanPresenter from '../popup-button-clean/popup-button-clean-presenter.js';
 import PopupSumPresenter from '../popup-sum/popup-sum-presenter.js';
 import PopupView from './popup-view.js';
+import { RenderPosition, remove, render } from '../framework/render.js';
+import { Filters, FiltersReason, FiltersColor } from '../const.js';
 
 export default class PopupPresenter {
   #container = null;
@@ -37,6 +38,24 @@ export default class PopupPresenter {
     this.#renderCardList();
   }
 
+  removeAllCards = (updatePopupCleanButtonState) => {
+    const promises = [];
+    this.#catalogueCardPopupPresenters.forEach((_, id) => {
+      const countProducts = this.#cartModel.cart.products[id];
+      for (let i = countProducts; i > 0; i--) {
+        promises.push(this.#productsModel.deleteProductFromCart(id));
+      }
+    });
+    Promise.all(promises).then(() => {
+      this.#cartModel.init();
+      this.#catalogueCardPopupPresenters.forEach((cardPopupPresenter) => {
+        cardPopupPresenter.removeCardPopup();
+      });
+      this.#catalogueCardPopupPresenters.clear();
+      updatePopupCleanButtonState();
+    });
+  };
+
   #renderCardList() {
     for (const [id, count] of Object.entries(this.#cartModel.cart.products)) {
       const findingProduct = this.#productsModel.products.find((product) => product.id === id);
@@ -59,34 +78,16 @@ export default class PopupPresenter {
   }
 
   #handleButtonClosePopupClick = () => {
-    document.querySelector('main').style = 'display:block;';
+    this.#popupView.displayMainPage();
     remove(this.#popupView);
   };
 
   #handleButtonReturnToCatalogClick = () => {
-    document.querySelector('main').style = 'display:block;';
+    this.#popupView.displayMainPage();
     remove(this.#popupView);
-    this.#filtersPresenter.filterProducts('reason', 'all');
-    this.#filtersPresenter.filterProducts('color', new Set().add('all'));
+    this.#filtersPresenter.filterProducts(Filters.REASON, FiltersReason.ALL.type);
+    this.#filtersPresenter.filterProducts(Filters.COLOR, new Set().add(FiltersColor.ALL.type));
     this.#filtersPresenter.rerenderFilters();
     this.#buttonShowMoreModel.page = 1;
-  };
-
-  removeAllCards = (updatePopupCleanButtonState) => {
-    const promises = [];
-    this.#catalogueCardPopupPresenters.forEach((_, id) => {
-      const countProducts = this.#cartModel.cart.products[id];
-      for (let i = countProducts; i > 0; i--) {
-        promises.push(this.#productsModel.deleteProductFromCart(id));
-      }
-    });
-    Promise.all(promises).then(() => {
-      this.#cartModel.init();
-      this.#catalogueCardPopupPresenters.forEach((cardPopupPresenter) => {
-        cardPopupPresenter.removeCardPopup();
-      });
-      this.#catalogueCardPopupPresenters.clear();
-      updatePopupCleanButtonState();
-    });
   };
 }

@@ -16,6 +16,16 @@ const BOUQUET_TYPE = new Map([
   ['forlove', 'Любимой']
 ]);
 
+const Sorting = {
+  DESCENDING: 'descending',
+  INCREASE: 'increase'
+};
+
+const Filters = {
+  REASON: 'reason',
+  COLOR: 'color',
+};
+
 const FiltersReason = {
   ALL: {
     id: '0',
@@ -101,6 +111,8 @@ export {
   END_POINT,
   Method,
   BOUQUET_TYPE,
+  Sorting,
+  Filters,
   FiltersReason,
   FiltersColor,
   COUNT_DISPLAY_PRODUCTS

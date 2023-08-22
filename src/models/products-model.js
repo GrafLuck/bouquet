@@ -1,12 +1,13 @@
 import Observable from '../framework/observable.js';
+import { Sorting, Filters, FiltersReason, FiltersColor } from '../const.js';
 
 export default class ProductsModel extends Observable {
   #productsApiService = null;
   #products = [];
   #filteringAndSortingProducts = [];
-  #currentFilterReason = 'all';
-  #currentFilterColor = new Set().add('all');
-  #currentSorting = 'increase';
+  #currentFilterReason = FiltersReason.ALL.type;
+  #currentFilterColor = new Set().add(FiltersColor.ALL.type);
+  #currentSorting = Sorting.INCREASE;
 
   constructor({ productsApiService }) {
     super();
@@ -52,36 +53,36 @@ export default class ProductsModel extends Observable {
     try {
       return await this.#productsApiService.deleteProductFromCart(id);
     } catch (err) {
-      throw new Error('Can\'t delete product from cart');
+      //  throw new Error('Can\'t delete product from cart');
     }
   }
 
   filterProducts(filterType, payload) {
     let type;
     let colors;
-    if (filterType === 'reason') {
+    if (filterType === Filters.REASON) {
       type = payload;
       colors = this.#currentFilterColor;
     }
-    if (filterType === 'color') {
+    if (filterType === Filters.COLOR) {
       type = this.#currentFilterReason;
       colors = payload;
     }
-    this.#filteringAndSortingProducts = type !== 'all' ? this.products.filter((product) => product.type === type) : this.products;
-    this.#filteringAndSortingProducts = !colors.has('all') ? this.#filteringAndSortingProducts.filter((product) => colors.has(product.color)) : this.#filteringAndSortingProducts;
+    this.#filteringAndSortingProducts = type !== FiltersReason.ALL.type ? this.products.filter((product) => product.type === type) : this.products;
+    this.#filteringAndSortingProducts = !colors.has(FiltersColor.ALL.type) ? this.#filteringAndSortingProducts.filter((product) => colors.has(product.color)) : this.#filteringAndSortingProducts;
     this.sortProducts(this.#currentSorting);
     this.#currentFilterReason = type;
     this.#currentFilterColor = colors;
   }
 
-  sortProducts(direction = 'increase') {
-    if (direction === 'increase') {
+  sortProducts(direction = Sorting.INCREASE) {
+    if (direction === Sorting.INCREASE) {
       this.#filteringAndSortingProducts.sort((a, b) => a.price - b.price);
-      this.#currentSorting = 'increase';
+      this.#currentSorting = Sorting.INCREASE;
     }
-    if (direction === 'descending') {
+    if (direction === Sorting.DESCENDING) {
       this.#filteringAndSortingProducts.sort((a, b) => b.price - a.price);
-      this.#currentSorting = 'descending';
+      this.#currentSorting = Sorting.DESCENDING;
     }
   }
 }

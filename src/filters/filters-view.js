@@ -7,13 +7,17 @@ export default class FiltersView extends AbstractStatefulView {
 
   constructor({ handleFilterReasonChange, handleFilterColorChange }) {
     super();
-    this._restoreHandlers();
     this.#handleFilterReasonChange = handleFilterReasonChange;
     this.#handleFilterColorChange = handleFilterColorChange;
+    this._restoreHandlers();
   }
 
   get template() {
     return createFiltersTemplate();
+  }
+
+  rerenderFilters() {
+    this.updateElement({});
   }
 
   _restoreHandlers() {
@@ -35,8 +39,4 @@ export default class FiltersView extends AbstractStatefulView {
     }
     this.#handleFilterColorChange(colors);
   };
-
-  rerenderFilters() {
-    this.updateElement({});
-  }
 }

@@ -39,7 +39,7 @@ export default class HeaderCountPresenter {
   }
 
   #handleHeaderCountClick = () => {
-    document.querySelector('main').style = 'display:none;';
+    this.#headerCountView.hideMainPage();
     this.#popupPresenter.init();
   };
 }

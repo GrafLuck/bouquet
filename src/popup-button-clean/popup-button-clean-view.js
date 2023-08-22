@@ -15,6 +15,10 @@ export default class PopupButtonCleanView extends AbstractStatefulView {
     return createPopupButtonClean(this._state);
   }
 
+  updateButtonCleanClick = () => {
+    this.updateElement({ isClean: false });
+  };
+
   _restoreHandlers() {
     this.element.addEventListener('click', this.#onButtonCleanClick);
   }
@@ -23,10 +27,5 @@ export default class PopupButtonCleanView extends AbstractStatefulView {
     evt.preventDefault();
     this.updateElement({ isClean: true });
     await this.#handleButtonCleanClick();
-
-  };
-
-  updateButtonCleanClick = () => {
-    this.updateElement({ isClean: false });
   };
 }

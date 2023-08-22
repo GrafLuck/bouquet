@@ -16,6 +16,10 @@ export default class HeaderCountView extends AbstractView {
     return createHeaderCountTemplate(this.#totalInfo);
   }
 
+  hideMainPage() {
+    document.querySelector('main').style = 'display:none;';
+  }
+
   #onHeaderCountClick = (evt) => {
     evt.preventDefault();
     this.#handleHeaderCountClick();

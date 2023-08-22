@@ -1,5 +1,6 @@
-import { render, RenderPosition } from '../framework/render.js';
 import FiltersView from './filters-view.js';
+import { render, RenderPosition } from '../framework/render.js';
+import { Filters, FiltersReason } from '../const.js';
 
 export default class FiltersPresenter {
   #filtersView = null;
@@ -21,43 +22,47 @@ export default class FiltersPresenter {
     render(this.#filtersView, this.#container, RenderPosition.AFTERBEGIN);
   }
 
-  #handleFilterReasonChange = (itemFilter) => {
-    this.filterProducts('reason', itemFilter);
-  };
-
-  #handleFilterColorChange = (colors) => {
-    this.filterProducts('color', colors);
-  };
-
   filterProducts(filter, itemFilter) {
-    if (filter === 'reason') {
+    if (filter === Filters.REASON) {
       const type = this.#adaptFilterToType(itemFilter);
-      this.#productsModel.filterProducts('reason', type);
+      this.#productsModel.filterProducts(Filters.REASON, type);
       this.#buttonShowMoreModel.page = 1;
     }
-    if (filter === 'color') {
+    if (filter === Filters.COLOR) {
       itemFilter = this.#adaptFilterToColor(itemFilter);
-      this.#productsModel.filterProducts('color', itemFilter);
+      this.#productsModel.filterProducts(Filters.COLOR, itemFilter);
       this.#buttonShowMoreModel.page = 1;
     }
   }
 
+  rerenderFilters() {
+    this.#filtersView.rerenderFilters();
+  }
+
+  #handleFilterReasonChange = (itemFilter) => {
+    this.filterProducts(Filters.REASON, itemFilter);
+  };
+
+  #handleFilterColorChange = (colors) => {
+    this.filterProducts(Filters.COLOR, colors);
+  };
+
   #adaptFilterToType(itemFilter) {
     let type;
     switch (itemFilter.split('-')[1]) {
-      case 'birthday':
+      case FiltersReason.BIRTHDAY.type:
         type = 'birthdayboy';
         break;
-      case 'bride':
+      case FiltersReason.BRIDE.type:
         type = 'bridge';
         break;
-      case 'mother':
+      case FiltersReason.MOTHER.type:
         type = 'motherday';
         break;
-      case 'colleague':
+      case FiltersReason.COLLEAGUE.type:
         type = 'colleagues';
         break;
-      case 'darling':
+      case FiltersReason.DARLING.type:
         type = 'forlove';
         break;
       default:
@@ -71,9 +76,5 @@ export default class FiltersPresenter {
       itemFilter.add('violet');
     }
     return itemFilter;
-  }
-
-  rerenderFilters() {
-    this.#filtersView.rerenderFilters();
   }
 }

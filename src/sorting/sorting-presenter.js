@@ -1,5 +1,6 @@
 import { render } from '../framework/render.js';
 import SortingView from './sorting-view.js';
+import { Sorting } from '../const.js';
 
 export default class SortingPresenter {
   #sortingView = null;
@@ -24,7 +25,7 @@ export default class SortingPresenter {
   };
 
   #handleDescendingSortingButtonClick = () => {
-    this.#productsModel.sortProducts('descending');
+    this.#productsModel.sortProducts(Sorting.DESCENDING);
     this.#buttonShowMoreModel.page = 1;
   };
 }

@@ -29,6 +29,10 @@ export default class PopupView extends AbstractStatefulView {
     return this.element.querySelector('.popup-deferred__btn-container');
   }
 
+  displayMainPage() {
+    document.querySelector('main').style = 'display:block;';
+  }
+
   _restoreHandlers() {
     this.element.querySelector('.hero__popupclose').addEventListener('click', this.#onButtonClosePopupClick);
     this.element.querySelector('.popup-deferred__btn').addEventListener('click', this.#onButtonReturnToCatalogClick);

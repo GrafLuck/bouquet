@@ -33,5 +33,4 @@ export default class SortingView extends AbstractStatefulView {
     this.#handleDescendingSortingButtonClick();
     this.updateElement({ isIncrease: false });
   };
-
 }

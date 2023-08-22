@@ -3,12 +3,12 @@ import { Method } from '../const.js';
 
 export default class ProductsApiService extends ApiService {
   get products() {
-    return this._load({url: 'products'})
+    return this._load({ url: 'products' })
       .then(ApiService.parseResponse);
   }
 
   async product(id) {
-    return this._load({url: `products/${id}`})
+    return this._load({ url: `products/${id}` })
       .then(ApiService.parseResponse);
   }
 
@@ -24,13 +24,9 @@ export default class ProductsApiService extends ApiService {
   }
 
   async deleteProductFromCart(id) {
-    const response = await this._load({
+    return await this._load({
       url: `products/${id}`,
       method: Method.DELETE,
     });
-
-    const parsedResponse = await ApiService.parseResponse(response);
-
-    return parsedResponse;
   }
 }

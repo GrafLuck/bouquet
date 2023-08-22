@@ -53,7 +53,7 @@ export default class ProductsModel extends Observable {
     try {
       return await this.#productsApiService.deleteProductFromCart(id);
     } catch (err) {
-      //  throw new Error('Can\'t delete product from cart');
+      throw new Error('Can\'t delete product from cart');
     }
   }
 

@@ -2,10 +2,6 @@ import AbstractView from '../framework/view/abstract-view.js';
 import { createCatalogueTemplate } from './catalogue-template.js';
 
 export default class CatalogueView extends AbstractView {
-  constructor() {
-    super();
-  }
-
   get template() {
     return createCatalogueTemplate();
   }

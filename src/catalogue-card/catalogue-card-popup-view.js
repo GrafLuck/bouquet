@@ -9,10 +9,10 @@ export default class CatalogueCardPopupView extends AbstractStatefulView {
   constructor({ card, handleButtonCloseClick, handleButtonMinusClick, handleButtonPlusClick }) {
     super();
     this._state = { ...card };
-    this._restoreHandlers();
     this.#handleButtonCloseClick = handleButtonCloseClick;
     this.#handleButtonMinusClick = handleButtonMinusClick;
     this.#handleButtonPlusClick = handleButtonPlusClick;
+    this._restoreHandlers();
   }
 
   get template() {

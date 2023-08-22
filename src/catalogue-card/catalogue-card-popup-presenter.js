@@ -25,6 +25,10 @@ export default class CatalogueCardPopupPresenter {
     render(this.#catalogueCardPopupView, this.#container);
   }
 
+  removeCardPopup = () => {
+    remove(this.#catalogueCardPopupView);
+  };
+
   #handleButtonCloseClick = () => {
     this.#productsModel.deleteProductFromCart(this.#card.id).then(() => {
       this.removeCardPopup();
@@ -49,9 +53,5 @@ export default class CatalogueCardPopupPresenter {
       //const countProduct = Object.entries(this.#cartModel.cart.products).find((product) => product[0] == this.#card.id)[1];
       //убрать отметки о том, что букет выбран на главной странице
     });
-  };
-
-  removeCardPopup = () => {
-    remove(this.#catalogueCardPopupView);
   };
 }

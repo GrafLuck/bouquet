@@ -1,11 +1,11 @@
-import { remove, render, RenderPosition } from '../framework/render.js';
 import SortingPresenter from '../sorting/sorting-presenter.js';
 import CatalogueCardPresenter from '../catalogue-card/catalogue-card-presenter.js';
 import CatalogueView from './catalogue-view.js';
 import ButtonShowMorePresenter from '../button-show-more/button-show-more-presenter.js';
 import ButtonToTopPresenter from '../button-to-top/button-to-top-presenter.js';
-import { COUNT_DISPLAY_PRODUCTS } from '../const.js';
 import CatalogueEmptyView from './catalogue-empty-view.js';
+import { remove, render, RenderPosition } from '../framework/render.js';
+import { COUNT_DISPLAY_PRODUCTS } from '../const.js';
 
 export default class CataloguePresenter {
   #catalogueView = null;
@@ -26,9 +26,9 @@ export default class CataloguePresenter {
     this.#buttonHeartModel = buttonHeartModel;
     this.#cartModel = cartModel;
     this.#buttonShowMoreModel = buttonShowMoreModel;
+    this.#container = container;
     this.#catalogueView = new CatalogueView();
     this.#catalogueEmptyView = new CatalogueEmptyView();
-    this.#container = container;
     this.#buttonShowMoreModel.addObserver(this.#rerenderProductsList);
     this.#productsModel.addObserver(this.#rerenderProductsList);
   }

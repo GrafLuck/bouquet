@@ -16,11 +16,11 @@ export default class ButtonShowMorePresenter {
     render(this.#buttonShowMoreView, this.#container);
   }
 
-  #handleButtonShowMoreClick = () => {
-    this.#model.page += 1;
-  };
-
   removeButton() {
     remove(this.#buttonShowMoreView);
   }
+
+  #handleButtonShowMoreClick = () => {
+    this.#model.page += 1;
+  };
 }

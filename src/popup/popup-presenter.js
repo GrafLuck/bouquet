@@ -1,8 +1,8 @@
-import CatalogueCardPopupPresenter from "../catalogue-card/catalogue-card-popup-presenter";
-import { RenderPosition, remove, render } from "../framework/render";
-import PopupButtonCleanPresenter from "../popup-button-clean/popup-button-clean-presenter";
-import PopupSumPresenter from "../popup-sum/popup-sum-presenter";
-import PopupView from "./popup-view";
+import CatalogueCardPopupPresenter from '../catalogue-card/catalogue-card-popup-presenter.js';
+import { RenderPosition, remove, render } from '../framework/render.js';
+import PopupButtonCleanPresenter from '../popup-button-clean/popup-button-clean-presenter.js';
+import PopupSumPresenter from '../popup-sum/popup-sum-presenter.js';
+import PopupView from './popup-view.js';
 
 export default class PopupPresenter {
   #container = null;
@@ -39,17 +39,17 @@ export default class PopupPresenter {
 
   #renderCardList() {
     for (const [id, count] of Object.entries(this.#cartModel.cart.products)) {
-      const product = this.#productsModel.products.find((product) => product.id === id);
+      const findingProduct = this.#productsModel.products.find((product) => product.id === id);
       const card = {
         id: id,
         count: count,
-        title: product.title,
-        description: product.description,
-        price: product.price,
-        previewImage: product.previewImage
+        title: findingProduct.title,
+        description: findingProduct.description,
+        price: findingProduct.price,
+        previewImage: findingProduct.previewImage
       };
       this.#catalogueCardPopupPresenter = new CatalogueCardPopupPresenter({ container: this.#popupView.productsContainer, card: card, productsModel: this.#productsModel, cartModel: this.#cartModel });
-      this.#catalogueCardPopupPresenters.set(product.id, this.#catalogueCardPopupPresenter);
+      this.#catalogueCardPopupPresenters.set(findingProduct.id, this.#catalogueCardPopupPresenter);
       this.#catalogueCardPopupPresenter.init();
     }
     this.#popupSumPresenter = new PopupSumPresenter({ container: this.#popupView.popupSumContainer, count: this.#cartModel.countProducts, price: this.#cartModel.totalPrice, cartModel: this.#cartModel });
@@ -75,9 +75,9 @@ export default class PopupPresenter {
   removeAllCards = (updatePopupCleanButtonState) => {
     const promises = [];
     this.#catalogueCardPopupPresenters.forEach((_, id) => {
-      let countProducts = this.#cartModel.cart.products[id];
+      const countProducts = this.#cartModel.cart.products[id];
       for (let i = countProducts; i > 0; i--) {
-        promises.push(this.#productsModel.deleteProductFromCart(id))
+        promises.push(this.#productsModel.deleteProductFromCart(id));
       }
     });
     Promise.all(promises).then(() => {
@@ -88,5 +88,5 @@ export default class PopupPresenter {
       this.#catalogueCardPopupPresenters.clear();
       updatePopupCleanButtonState();
     });
-  }
+  };
 }

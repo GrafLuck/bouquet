@@ -1,10 +1,10 @@
-import AbstractView from "../framework/view/abstract-view";
-import { createButtonShowMoreTemplate } from "./button-show-more-template";
+import AbstractView from '../framework/view/abstract-view.js';
+import { createButtonShowMoreTemplate } from './button-show-more-template.js';
 
 export default class ButtonShowMoreView extends AbstractView {
   #handleButtonShowMoreClick = null;
 
-  constructor({handleButtonShowMoreClick}) {
+  constructor({ handleButtonShowMoreClick }) {
     super();
     this.element.addEventListener('click', this.#onButtonShowMoreClick);
     this.#handleButtonShowMoreClick = handleButtonShowMoreClick;

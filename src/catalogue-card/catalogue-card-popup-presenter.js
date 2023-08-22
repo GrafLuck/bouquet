@@ -1,5 +1,5 @@
-import { remove, render } from "../framework/render";
-import CatalogueCardPopupView from "./catalogue-card-popup-view";
+import { remove, render } from '../framework/render.js';
+import CatalogueCardPopupView from './catalogue-card-popup-view.js';
 
 export default class CatalogueCardPopupPresenter {
   #container = null;
@@ -53,5 +53,5 @@ export default class CatalogueCardPopupPresenter {
 
   removeCardPopup = () => {
     remove(this.#catalogueCardPopupView);
-  }
+  };
 }

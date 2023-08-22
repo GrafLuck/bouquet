@@ -1,5 +1,5 @@
-import { render, RenderPosition } from "../framework/render";
-import AdvantagesView from "./advantages-view";
+import { render, RenderPosition } from '../framework/render.js';
+import AdvantagesView from './advantages-view.js';
 
 export default class AdvantagesPresenter {
   #advantagesView = null;
@@ -11,6 +11,6 @@ export default class AdvantagesPresenter {
   }
 
   init() {
-    render(this.#advantagesView, this.#container, RenderPosition.AFTERBEGIN)
+    render(this.#advantagesView, this.#container, RenderPosition.AFTERBEGIN);
   }
 }

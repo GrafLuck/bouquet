@@ -5,7 +5,7 @@ const Method = {
   GET: 'GET',
   PUT: 'PUT',
   DELETE: 'DELETE',
-}
+};
 
 const BOUQUET_TYPE = new Map([
   ['all', 'Для всех'],
@@ -53,7 +53,7 @@ const FiltersReason = {
     text: 'Любимой',
     checked: false,
   }
-}
+};
 
 const FiltersColor = {
   ALL: {
@@ -92,7 +92,7 @@ const FiltersColor = {
     text: 'розовый',
     checked: false,
   },
-}
+};
 
 const COUNT_DISPLAY_PRODUCTS = 6;
 

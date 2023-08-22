@@ -1,8 +1,8 @@
-import { remove, render } from "../framework/render";
-import CatalogueCardView from "./catalogue-card-view";
-import CatalogueCardModalView from "./catalogue-card-modal-view";
-import { modals } from "../modals/init-modals.js";
-import { ImageSlider } from "../utils/image-slider.js";
+import { remove, render } from '../framework/render.js';
+import CatalogueCardView from './catalogue-card-view.js';
+import CatalogueCardModalView from './catalogue-card-modal-view.js';
+import { modals } from '../modals/init-modals.js';
+import { ImageSlider } from '../utils/image-slider.js';
 
 export default class CatalogueCardPresenter {
   #catalogCardView = null;
@@ -42,7 +42,7 @@ export default class CatalogueCardPresenter {
     render(this.#catalogPopupView, document.querySelector('.modal-product'));
     document.querySelector('.modal-product__btn-close').addEventListener('click', this.#onButtonClosePopupClick);
     document.addEventListener('keydown', this.#onEscKeydown);
-    document.addEventListener('click', this.#onNotPopupClick)
+    document.addEventListener('click', this.#onNotPopupClick);
   }
 
   removeCard() {
@@ -55,7 +55,7 @@ export default class CatalogueCardPresenter {
   };
 
   #onEscKeydown = (evt) => {
-    const isEscKey = evt.key === "Escape" || evt.key === "Esc";
+    const isEscKey = evt.key === 'Escape' || evt.key === 'Esc';
 
     if (isEscKey) {
       remove(this.#catalogPopupView);
@@ -68,7 +68,7 @@ export default class CatalogueCardPresenter {
 
     if (!withinBoundaries) {
       remove(this.#catalogPopupView);
-      document.removeEventListener('click', this.#onNotPopupClick)
+      document.removeEventListener('click', this.#onNotPopupClick);
     }
   };
 
@@ -78,14 +78,14 @@ export default class CatalogueCardPresenter {
       this.#productsModel.addProductToCart(this.#product.id).then(() => {
         this.#cartModel.init();
         this.#isActive = true;
-        this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive })
+        this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive });
       });
 
     } else {
       this.#productsModel.deleteProductFromCart(this.#product.id).then(() => {
         this.#cartModel.init();
         this.#isActive = false;
-        this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive })
+        this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive });
       });
     }
   };
@@ -98,7 +98,7 @@ export default class CatalogueCardPresenter {
         this.#isActive = true;
         this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive });
         this.#catalogPopupView.updateElement({ ...this.#product, isActive: this.#isActive });
-        const imageSlider = new ImageSlider(".image-slider");
+        const imageSlider = new ImageSlider('.image-slider');
         imageSlider.init();
       });
     } else {
@@ -107,7 +107,7 @@ export default class CatalogueCardPresenter {
         this.#isActive = false;
         this.#catalogCardView.updateElement({ ...this.#product, isActive: this.#isActive });
         this.#catalogPopupView.updateElement({ ...this.#product, isActive: this.#isActive });
-        const imageSlider = new ImageSlider(".image-slider");
+        const imageSlider = new ImageSlider('.image-slider');
         imageSlider.init();
       });
     }
@@ -129,12 +129,12 @@ export default class CatalogueCardPresenter {
           images: product.images,
         },
         handleButtonAddToCartClick: this.#handleButtonAddToCartClick
-      })
+      });
       this.#renderPopup();
-      modals.open("popup-data-attr");
-      const imageSlider = new ImageSlider(".image-slider");
+      modals.open('popup-data-attr');
+      const imageSlider = new ImageSlider('.image-slider');
       imageSlider.init();
-    })
+    });
   };
 }
 

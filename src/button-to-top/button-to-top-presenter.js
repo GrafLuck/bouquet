@@ -1,5 +1,5 @@
-import ButtonToTopView from "./button-to-top-view";
-import { render } from "../framework/render";
+import ButtonToTopView from './button-to-top-view.js';
+import { render } from '../framework/render.js';
 
 export default class ButtonToTopPresenter {
   #buttonToTopView = null;

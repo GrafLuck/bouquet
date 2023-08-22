@@ -1,5 +1,5 @@
-import { RenderPosition, render } from "../framework/render";
-import HeroView from "./hero-view";
+import { RenderPosition, render } from '../framework/render.js';
+import HeroView from './hero-view.js';
 
 export default class HeroPresenter {
   #heroView = null;

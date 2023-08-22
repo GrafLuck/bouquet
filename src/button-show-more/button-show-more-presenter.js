@@ -1,5 +1,5 @@
-import ButtonShowMoreView from "./button-show-more-view";
-import { render, remove } from "../framework/render";
+import ButtonShowMoreView from './button-show-more-view.js';
+import { render, remove } from '../framework/render.js';
 
 export default class ButtonShowMorePresenter {
   #buttonShowMoreView = null;
@@ -7,7 +7,7 @@ export default class ButtonShowMorePresenter {
   #container = null;
 
   constructor({ container, model }) {
-    this.#buttonShowMoreView = new ButtonShowMoreView({handleButtonShowMoreClick: this.#handleButtonShowMoreClick});
+    this.#buttonShowMoreView = new ButtonShowMoreView({ handleButtonShowMoreClick: this.#handleButtonShowMoreClick });
     this.#model = model;
     this.#container = container;
   }

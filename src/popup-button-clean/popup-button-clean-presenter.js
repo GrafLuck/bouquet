@@ -1,5 +1,5 @@
-import { render } from "../framework/render";
-import PopupButtonCleanView from "./popup-button-clean-view";
+import { render } from '../framework/render.js';
+import PopupButtonCleanView from './popup-button-clean-view.js';
 
 export default class PopupButtonCleanPresenter {
   #container = null;
@@ -18,5 +18,5 @@ export default class PopupButtonCleanPresenter {
 
   #handleButtonCleanClick = () => {
     this.#handleRemoveCardsHandle(this.#popupButtonCleanView.updateButtonCleanClick);
-  }
+  };
 }

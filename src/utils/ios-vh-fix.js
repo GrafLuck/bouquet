@@ -1,4 +1,4 @@
-import {iosChecker} from './ios-checker';
+import { iosChecker } from './ios-checker';
 
 const iosVhFix = () => {
   if (!(!!window.MSInputMethodContext && !!document.documentMode)) {
@@ -6,7 +6,7 @@ const iosVhFix = () => {
       let vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
 
-      window.addEventListener('resize', function () {
+      window.addEventListener('resize', () => {
         vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
       });
@@ -14,4 +14,4 @@ const iosVhFix = () => {
   }
 };
 
-export {iosVhFix};
+export { iosVhFix };

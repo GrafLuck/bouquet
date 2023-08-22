@@ -19,5 +19,5 @@ export default class HeaderCountView extends AbstractView {
   #onHeaderCountClick = (evt) => {
     evt.preventDefault();
     this.#handleHeaderCountClick();
-  }
+  };
 }

@@ -1,4 +1,4 @@
-import AbstractStatefulView from "../framework/view/abstract-stateful-view";
+import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
 import { createFiltersTemplate } from './filters-template.js';
 
 export default class FiltersView extends AbstractStatefulView {
@@ -31,7 +31,7 @@ export default class FiltersView extends AbstractStatefulView {
     const colors = new Set();
     const colorCheckboxesChecked = this.element.querySelectorAll('.filter-color__form-field:checked');
     for (const colorCheckboxChecked of colorCheckboxesChecked) {
-      colors.add(colorCheckboxChecked.dataset.filterColor.split('-')[1])
+      colors.add(colorCheckboxChecked.dataset.filterColor.split('-')[1]);
     }
     this.#handleFilterColorChange(colors);
   };

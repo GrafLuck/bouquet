@@ -1,5 +1,5 @@
-import { render, RenderPosition } from "../framework/render";
-import FiltersView from "./filters-view";
+import { render, RenderPosition } from '../framework/render.js';
+import FiltersView from './filters-view.js';
 
 export default class FiltersPresenter {
   #filtersView = null;

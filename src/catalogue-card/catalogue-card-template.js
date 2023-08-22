@@ -1,4 +1,4 @@
-import { BOUQUET_TYPE } from "../const";
+import { BOUQUET_TYPE } from '../const.js';
 
 function createCatalogueCardTemplate(card) {
   const { title, description, price, type, previewImage, isActive } = card;

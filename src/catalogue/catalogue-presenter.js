@@ -1,12 +1,11 @@
-import { remove, render, RenderPosition } from "../framework/render";
-import SortingPresenter from "../sorting/sorting-presenter";
-import CatalogueCardPresenter from "../catalogue-card/catalogue-card-presenter";
-import CatalogueView from "./catalogue-view";
-import ButtonShowMorePresenter from "../button-show-more/button-show-more-presenter";
-import ButtonToTopPresenter from "../button-to-top/button-to-top-presenter";
-import { COUNT_DISPLAY_PRODUCTS } from "../const";
-import ButtonShowMoreModel from "../models/button-show-more-model";
-import CatalogueEmptyView from "./catalogue-empty-view";
+import { remove, render, RenderPosition } from '../framework/render.js';
+import SortingPresenter from '../sorting/sorting-presenter.js';
+import CatalogueCardPresenter from '../catalogue-card/catalogue-card-presenter.js';
+import CatalogueView from './catalogue-view.js';
+import ButtonShowMorePresenter from '../button-show-more/button-show-more-presenter.js';
+import ButtonToTopPresenter from '../button-to-top/button-to-top-presenter.js';
+import { COUNT_DISPLAY_PRODUCTS } from '../const.js';
+import CatalogueEmptyView from './catalogue-empty-view.js';
 
 export default class CataloguePresenter {
   #catalogueView = null;

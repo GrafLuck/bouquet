@@ -1,5 +1,5 @@
-import { render } from "../framework/render";
-import SortingView from "./sorting-view";
+import { render } from '../framework/render.js';
+import SortingView from './sorting-view.js';
 
 export default class SortingPresenter {
   #sortingView = null;

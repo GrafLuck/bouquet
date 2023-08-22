@@ -1,4 +1,4 @@
-import { FiltersReason, FiltersColor } from "../const";
+import { FiltersReason, FiltersColor } from '../const.js';
 
 function createFiltersTemplate() {
   return (`

@@ -1,5 +1,5 @@
-import AbstractView from "../framework/view/abstract-view";
-import { createPopupSumTemplate } from "./popup-sum-template";
+import AbstractView from '../framework/view/abstract-view.js';
+import { createPopupSumTemplate } from './popup-sum-template.js';
 
 export default class PopupSumView extends AbstractView {
   #count = null;

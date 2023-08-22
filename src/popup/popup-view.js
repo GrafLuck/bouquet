@@ -1,5 +1,5 @@
-import AbstractStatefulView from "../framework/view/abstract-stateful-view";
-import { createPopupTemplate } from "./popup-template";
+import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
+import { createPopupTemplate } from './popup-template.js';
 
 export default class PopupView extends AbstractStatefulView {
   #handleButtonClosePopupClick = null;

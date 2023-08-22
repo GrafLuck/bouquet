@@ -1,5 +1,5 @@
-import { remove, render } from "../framework/render";
-import PopupSumView from "./popup-sum-view";
+import { remove, render } from '../framework/render.js';
+import PopupSumView from './popup-sum-view.js';
 
 export default class PopupSumPresenter {
   #container = null;
@@ -19,7 +19,7 @@ export default class PopupSumPresenter {
 
   #rerenderPopupSum = () => {
     remove(this.#popupSumView);
-    this.#popupSumView = new PopupSumView({ count: this.#cartModel.countProducts, price: this.#cartModel.totalPrice })
+    this.#popupSumView = new PopupSumView({ count: this.#cartModel.countProducts, price: this.#cartModel.totalPrice });
     render(this.#popupSumView, this.#container);
-  }
+  };
 }

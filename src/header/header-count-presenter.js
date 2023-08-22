@@ -1,5 +1,5 @@
-import { remove, render } from "../framework/render";
-import HeaderCountView from "./header-count-view";
+import { remove, render } from '../framework/render.js';
+import HeaderCountView from './header-count-view.js';
 
 export default class HeaderCountPresenter {
   #headerCountView = null;
@@ -21,7 +21,7 @@ export default class HeaderCountPresenter {
   #rerenderHeaderCountView = () => {
     this.#removeHeaderCountView();
     this.#renderHeaderCountView();
-  }
+  };
 
   #renderHeaderCountView() {
     this.#headerCountView = new HeaderCountView({

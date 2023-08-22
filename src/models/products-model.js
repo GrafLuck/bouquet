@@ -36,7 +36,7 @@ export default class ProductsModel extends Observable {
     try {
       return await this.#productsApiService.product(id);
     } catch (err) {
-
+      throw new Error('Can\'t get product');
     }
   }
 
@@ -44,7 +44,7 @@ export default class ProductsModel extends Observable {
     try {
       return await this.#productsApiService.addProductToCart(id);
     } catch (err) {
-
+      throw new Error('Can\'t add product to cart');
     }
   }
 
@@ -52,7 +52,7 @@ export default class ProductsModel extends Observable {
     try {
       return await this.#productsApiService.deleteProductFromCart(id);
     } catch (err) {
-
+      throw new Error('Can\'t delete product from cart');
     }
   }
 

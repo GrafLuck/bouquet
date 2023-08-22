@@ -1,5 +1,5 @@
-import AbstractStatefulView from "../framework/view/abstract-stateful-view";
-import { createCatalogueCardModalTemplate } from "./catalogue-card-modal-template";
+import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
+import { createCatalogueCardModalTemplate } from './catalogue-card-modal-template.js';
 
 export default class CatalogueCardModalView extends AbstractStatefulView {
   #handleButtonAddToCartClick = null;

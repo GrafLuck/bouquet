@@ -1,6 +1,5 @@
-import AbstractStatefulView from "../framework/view/abstract-stateful-view";
-import { createCatalogueCardTemplate } from "./catalogue-card-template";
-import { modals } from "../modals/init-modals.js";
+import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
+import { createCatalogueCardTemplate } from './catalogue-card-template.js';
 
 export default class CatalogueCardView extends AbstractStatefulView {
   #handleButtonHeartClick = null;
@@ -28,7 +27,7 @@ export default class CatalogueCardView extends AbstractStatefulView {
 
   _restoreHandlers() {
     this.element.querySelector('.button-heart').addEventListener('click', this.#onButtonHeartClick);
-    this.element.addEventListener("click", this.#onCardClick);
+    this.element.addEventListener('click', this.#onCardClick);
   }
 
   #onButtonHeartClick = (evt) => {
@@ -39,5 +38,5 @@ export default class CatalogueCardView extends AbstractStatefulView {
   #onCardClick = (evt) => {
     evt.preventDefault();
     this.#handleCartClick(evt);
-  }
+  };
 }

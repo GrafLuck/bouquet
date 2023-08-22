@@ -1,5 +1,5 @@
-import AbstractStatefulView from "../framework/view/abstract-stateful-view";
-import { createSortingTemplate } from "./sorting-template";
+import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
+import { createSortingTemplate } from './sorting-template.js';
 
 export default class SortingView extends AbstractStatefulView {
   #handleIncreaseSortingButtonClick = null;

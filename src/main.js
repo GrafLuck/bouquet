@@ -1,30 +1,29 @@
 // Импорт вендоров и утилит, не удаляйте его
-import "./vendor";
-import { ImageSlider } from "./utils/image-slider";
-import { iosVhFix } from "./utils/ios-vh-fix";
-import { modals, initModals } from "./modals/init-modals";
+import './vendor.js';
+import { iosVhFix } from './utils/ios-vh-fix.js';
+import { initModals } from './modals/init-modals.js';
 
 
 // Ваши импорты...
-import HeaderCountPresenter from "./header/header-count-presenter";
-import HeroPresenter from "./hero/hero-presenter";
-import MissionPresenter from "./mission/mission-presenter";
-import AdvantagesPresenter from "./advantages/advantages-presenter";
-import FiltersPresenter from "./filters/filters-presenter";
-import CataloguePresenter from "./catalogue/catalogue-presenter";
-import CartModel from "./models/cart-model";
-import CartApiService from "./api/cart-api-service";
-import ProductsApiService from "./api/products-api-service";
-import ProductsModel from "./models/products-model";
-import { AUTHORIZATION, END_POINT } from "./const";
-import ButtonShowMoreModel from "./models/button-show-more-model";
-import PopupPresenter from "./popup/popup-presenter";
+import HeaderCountPresenter from './header/header-count-presenter.js';
+import HeroPresenter from './hero/hero-presenter.js';
+import MissionPresenter from './mission/mission-presenter.js';
+import AdvantagesPresenter from './advantages/advantages-presenter.js';
+import FiltersPresenter from './filters/filters-presenter.js';
+import CataloguePresenter from './catalogue/catalogue-presenter.js';
+import CartModel from './models/cart-model.js';
+import CartApiService from './api/cart-api-service.js';
+import ProductsApiService from './api/products-api-service.js';
+import ProductsModel from './models/products-model.js';
+import { AUTHORIZATION, END_POINT } from './const.js';
+import ButtonShowMoreModel from './models/button-show-more-model.js';
+import PopupPresenter from './popup/popup-presenter.js';
 
 // Код для работы попапов, не удаляйте его
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener('DOMContentLoaded', () => {
   iosVhFix();
 
-  window.addEventListener("load", () => {
+  window.addEventListener('load', () => {
     // Инициализация попапов
     initModals();
   });
@@ -35,15 +34,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const cartModel = new CartModel({ cartApiService });
   const productsModel = new ProductsModel({ productsApiService });
   const buttonShowMoreModel = new ButtonShowMoreModel();
-
-  Promise.all([productsModel.init(), cartModel.init()]).then(() => {
-    headerCountPresenter.init();
-    cataloguePresenter.init();
-    filtersPresenter.init();
-    advantagesPresenter.init();
-    missionPresenter.init();
-    heroPresenter.init();
-  });
 
   const headerContainer = document.querySelector('.header__container');
   const mainContainer = document.querySelector('main');
@@ -64,5 +54,14 @@ window.addEventListener("DOMContentLoaded", () => {
     productsModel: productsModel,
     cartModel: cartModel,
     buttonShowMoreModel: buttonShowMoreModel,
+  });
+
+  Promise.all([productsModel.init(), cartModel.init()]).then(() => {
+    headerCountPresenter.init();
+    cataloguePresenter.init();
+    filtersPresenter.init();
+    advantagesPresenter.init();
+    missionPresenter.init();
+    heroPresenter.init();
   });
 });

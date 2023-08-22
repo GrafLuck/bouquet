@@ -1,5 +1,5 @@
-import { render, RenderPosition } from "../framework/render";
-import MissionView from "./mission-view";
+import { render, RenderPosition } from '../framework/render.js';
+import MissionView from './mission-view.js';
 
 export default class MissionPresenter {
   #missionView = null;
@@ -11,6 +11,6 @@ export default class MissionPresenter {
   }
 
   init() {
-    render(this.#missionView, this.#container, RenderPosition.AFTERBEGIN)
+    render(this.#missionView, this.#container, RenderPosition.AFTERBEGIN);
   }
 }

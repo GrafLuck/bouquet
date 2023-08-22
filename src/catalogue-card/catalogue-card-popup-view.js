@@ -1,5 +1,5 @@
-import AbstractStatefulView from "../framework/view/abstract-stateful-view";
-import { createCardPopupTemplate } from "./catalogue-card-popup-template";
+import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
+import { createCardPopupTemplate } from './catalogue-card-popup-template.js';
 
 export default class CatalogueCardPopupView extends AbstractStatefulView {
   #handleButtonCloseClick = null;
@@ -42,5 +42,5 @@ export default class CatalogueCardPopupView extends AbstractStatefulView {
     evt.preventDefault();
     this.#handleButtonPlusClick();
     this.updateElement({ count: this._state.count + 1 });
-  }
+  };
 }

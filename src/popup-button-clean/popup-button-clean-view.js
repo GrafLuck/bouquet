@@ -1,5 +1,5 @@
-import AbstractStatefulView from "../framework/view/abstract-stateful-view";
-import { createPopupButtonClean } from "./popup-button-clean-template";
+import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
+import { createPopupButtonClean } from './popup-button-clean-template.js';
 
 export default class PopupButtonCleanView extends AbstractStatefulView {
   #handleButtonCleanClick = null;

@@ -6,6 +6,6 @@ function createPopupButtonClean({ isClean }) {
       </svg>
     </button>
   `);
-};
+}
 
 export { createPopupButtonClean };

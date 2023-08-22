@@ -1,8 +1,6 @@
 // Импорт вендоров и утилит, не удаляйте его
 import './vendor.js';
 import { iosVhFix } from './utils/ios-vh-fix.js';
-import { initModals } from './modals/init-modals.js';
-
 
 // Ваши импорты...
 import HeaderCountPresenter from './header/header-count-presenter.js';
@@ -22,11 +20,6 @@ import PopupPresenter from './popup/popup-presenter.js';
 // Код для работы попапов, не удаляйте его
 window.addEventListener('DOMContentLoaded', () => {
   iosVhFix();
-
-  window.addEventListener('load', () => {
-    // Инициализация попапов
-    initModals();
-  });
 
   // Ваш код...
   const cartApiService = new CartApiService(END_POINT, AUTHORIZATION);

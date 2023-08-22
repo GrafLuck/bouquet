@@ -13,20 +13,7 @@ let modals;
 //   openModalInCloseCallback('modal-5');
 // },
 
-const settings = {
-  default: {
-    preventDefault: true,
-    stopPlay: true,
-    lockFocus: true,
-    startFocus: true,
-    focusBack: true,
-    eventTimeout: 400,
-    openCallback: false,
-    closeCallback: false,
-  },
-};
-
-const initModals = () => {
+const initModals = (settings) => {
   const modalElements = document.querySelectorAll('.modal');
   if (modalElements.length) {
     modalElements.forEach((el) => {

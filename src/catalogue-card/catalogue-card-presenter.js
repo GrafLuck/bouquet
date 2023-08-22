@@ -4,6 +4,7 @@ import CatalogueCardModalView from './catalogue-card-modal-view.js';
 import { modals } from '../modals/init-modals.js';
 import { ImageSlider } from '../utils/image-slider.js';
 import { MAX_DESCRIPTION_LENGTH } from '../const.js';
+import { initModals } from '../modals/init-modals.js';
 
 export default class CatalogueCardPresenter {
   #catalogCardView = null;
@@ -43,11 +44,12 @@ export default class CatalogueCardPresenter {
     remove(this.#catalogCardView);
   }
 
+  removeCardPopup = () => {
+    remove(this.#catalogPopupView);
+  };
+
   #renderPopup() {
     render(this.#catalogPopupView, document.querySelector('.modal-product'));
-    document.querySelector('.modal-product__btn-close').addEventListener('click', this.#onButtonClosePopupClick);
-    document.addEventListener('keydown', this.#onEscKeydown);
-    document.addEventListener('click', this.#onNotPopupClick);
   }
 
   #cutDescription() {
@@ -56,29 +58,6 @@ export default class CatalogueCardPresenter {
     }
     return this.#product.description;
   }
-
-  #onButtonClosePopupClick = () => {
-    remove(this.#catalogPopupView);
-    document.querySelector('.modal-product__btn-close').removeEventListener('click', this.#onButtonClosePopupClick);
-  };
-
-  #onEscKeydown = (evt) => {
-    const isEscKey = evt.key === 'Escape' || evt.key === 'Esc';
-
-    if (isEscKey) {
-      remove(this.#catalogPopupView);
-      document.removeEventListener('keydown', this.#onEscKeydown);
-    }
-  };
-
-  #onNotPopupClick = (evt) => {
-    const withinBoundaries = evt.composedPath().includes(this.#catalogPopupView.element);
-
-    if (!withinBoundaries) {
-      remove(this.#catalogPopupView);
-      document.removeEventListener('click', this.#onNotPopupClick);
-    }
-  };
 
   #handleButtonHeartClick = () => {
     const isAdd = this.#catalogCardView.buttonHeartBody.classList.toggle('button-heart__body-active');
@@ -139,6 +118,19 @@ export default class CatalogueCardPresenter {
         handleButtonAddToCartClick: this.#handleButtonAddToCartClick
       });
       this.#renderPopup();
+      const modalSettings = {
+        default: {
+          preventDefault: true,
+          stopPlay: true,
+          lockFocus: true,
+          startFocus: true,
+          focusBack: true,
+          eventTimeout: 400,
+          openCallback: false,
+          closeCallback: this.removeCardPopup,
+        },
+      };
+      initModals(modalSettings);
       modals.open('popup-data-attr');
       const imageSlider = new ImageSlider('.image-slider');
       imageSlider.init();

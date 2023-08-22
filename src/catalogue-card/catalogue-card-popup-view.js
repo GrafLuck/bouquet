@@ -33,14 +33,15 @@ export default class CatalogueCardPopupView extends AbstractStatefulView {
 
   #onButtonMinusClick = (evt) => {
     evt.preventDefault();
-    this.#handleButtonMinusClick();
     const count = (this._state.count - 1) > 0 ? this._state.count - 1 : 0;
+    this.#handleButtonMinusClick(count);
     this.updateElement({ count: count });
   };
 
   #onButtonPlusClick = (evt) => {
     evt.preventDefault();
-    this.#handleButtonPlusClick();
-    this.updateElement({ count: this._state.count + 1 });
+    const count = this._state.count + 1;
+    this.#handleButtonPlusClick(count);
+    this.updateElement({ count: count });
   };
 }

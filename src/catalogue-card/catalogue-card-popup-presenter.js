@@ -30,21 +30,28 @@ export default class CatalogueCardPopupPresenter {
   };
 
   #handleButtonCloseClick = () => {
-    this.#productsModel.deleteProductFromCart(this.#card.id).then(() => {
+    const promises = [];
+    for (let i = 0; i < this.#card.count; i++) {
+      promises.push(this.#productsModel.deleteProductFromCart(this.#card.id));
+    }
+
+    Promise.all(promises).then(() => {
       this.removeCardPopup();
       this.#cartModel.init();
     });
   };
 
-  #handleButtonMinusClick = () => {
+  #handleButtonMinusClick = (count) => {
     this.#productsModel.deleteProductFromCart(this.#card.id).then(() => {
       this.#cartModel.init();
+      this.#card.count = count;
     });
   };
 
-  #handleButtonPlusClick = () => {
+  #handleButtonPlusClick = (count) => {
     this.#productsModel.addProductToCart(this.#card.id).then(() => {
       this.#cartModel.init();
+      this.#card.count = count;
     });
   };
 }

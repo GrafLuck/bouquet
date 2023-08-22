@@ -1,5 +1,6 @@
 const AUTHORIZATION = 'Basic eePy45fS45wcl1sh2u';
 const END_POINT = 'https://grading.objects.pages.academy/flowers-shop';
+const MAX_DESCRIPTION_LENGTH = 140;
 
 const Method = {
   GET: 'GET',
@@ -109,6 +110,7 @@ const COUNT_DISPLAY_PRODUCTS = 6;
 export {
   AUTHORIZATION,
   END_POINT,
+  MAX_DESCRIPTION_LENGTH,
   Method,
   BOUQUET_TYPE,
   Sorting,

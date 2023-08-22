@@ -3,6 +3,7 @@ import CatalogueCardView from './catalogue-card-view.js';
 import CatalogueCardModalView from './catalogue-card-modal-view.js';
 import { modals } from '../modals/init-modals.js';
 import { ImageSlider } from '../utils/image-slider.js';
+import { MAX_DESCRIPTION_LENGTH } from '../const.js';
 
 export default class CatalogueCardPresenter {
   #catalogCardView = null;
@@ -23,7 +24,7 @@ export default class CatalogueCardPresenter {
     this.#catalogCardView = new CatalogueCardView({
       card: {
         title: this.#product.title,
-        description: this.#product.description,
+        description: this.#cutDescription(),
         price: this.#product.price,
         previewImage: this.#product.previewImage,
         type: this.#product.type,
@@ -38,6 +39,10 @@ export default class CatalogueCardPresenter {
     render(this.#catalogCardView, this.#container);
   }
 
+  removeCard() {
+    remove(this.#catalogCardView);
+  }
+
   #renderPopup() {
     render(this.#catalogPopupView, document.querySelector('.modal-product'));
     document.querySelector('.modal-product__btn-close').addEventListener('click', this.#onButtonClosePopupClick);
@@ -45,8 +50,11 @@ export default class CatalogueCardPresenter {
     document.addEventListener('click', this.#onNotPopupClick);
   }
 
-  removeCard() {
-    remove(this.#catalogCardView);
+  #cutDescription() {
+    if (this.#product.description.length > MAX_DESCRIPTION_LENGTH) {
+      return `${this.#product.description.substring(0, MAX_DESCRIPTION_LENGTH - 1)}&hellip;`;
+    }
+    return this.#product.description;
   }
 
   #onButtonClosePopupClick = () => {
